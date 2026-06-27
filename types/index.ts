@@ -38,6 +38,18 @@ export interface ShowcaseItem {
   reverse: boolean
 }
 
+export type DetailSlug = 'performance' | 'interior' | 'safety' | 'gallery'
+
+export interface DetailPageData {
+  slug: DetailSlug
+  eyebrow: string
+  title: string
+  subtitle: string
+  heroImage: string
+  blocks: ShowcaseItem[]
+  gallery?: string[]
+}
+
 export interface NavItem {
   label: string
   href: string

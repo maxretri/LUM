@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { EXPLORE_CARDS } from '@/lib/constants'
+
+const MotionLink = motion.create(Link)
 
 export function ExploreSection() {
   return (
@@ -31,7 +34,7 @@ export function ExploreSection() {
           }}
         >
           {EXPLORE_CARDS.map((card) => (
-            <motion.a
+            <MotionLink
               key={card.title}
               href={card.href}
               variants={{
@@ -57,7 +60,7 @@ export function ExploreSection() {
                   className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
                 />
               </div>
-            </motion.a>
+            </MotionLink>
           ))}
         </motion.div>
       </div>

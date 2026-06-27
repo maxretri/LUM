@@ -1,12 +1,19 @@
-import type { ColorOption, SpecItem, FeatureCard, ExploreCard, NavItem, ShowcaseItem } from '@/types'
+import type {
+  ColorOption,
+  SpecItem,
+  FeatureCard,
+  ExploreCard,
+  NavItem,
+  DetailPageData,
+} from '@/types'
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Overview', href: '#overview' },
-  { label: 'Performance', href: '#performance' },
-  { label: 'Interior', href: '#interior' },
-  { label: 'Safety', href: '#safety' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Specifications', href: '#specifications' },
+  { label: 'LEV 01', href: '/#overview' },
+  { label: 'Performance', href: '/performance' },
+  { label: 'Interior', href: '/interior' },
+  { label: 'Safety', href: '/safety' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Specifications', href: '/#specifications' },
 ]
 
 export const SPECS: SpecItem[] = [
@@ -47,54 +54,114 @@ export const FEATURES: FeatureCard[] = [
   },
 ]
 
-export const SHOWCASES: ShowcaseItem[] = [
-  {
-    id: 'performance',
-    eyebrow: 'Performance',
-    title: 'Power, delivered\ninstantly.',
-    description:
-      '170 kW of refined electric power moves the LEV 01 from rest to motion with effortless calm. Every input answered the moment you ask.',
-    image: '/images/showcase-performance.jpg',
-    stats: [
-      { label: 'Power', value: '170 kW' },
-      { label: '0–100 km/h', value: '8.5 s' },
-      { label: 'Top Speed', value: '160 km/h' },
-    ],
-    reverse: false,
-  },
-  {
-    id: 'interior',
-    eyebrow: 'Interior',
-    title: 'A sanctuary\nin motion.',
-    description:
-      'Space that breathes. Materials chosen for the hand as much as the eye. The cabin of the LEV 01 is built to make every journey feel shorter and every arrival calmer.',
-    image: '/images/showcase-interior.jpg',
-    stats: [
-      { label: 'Wheelbase', value: '2760 mm' },
-      { label: 'Seating', value: '5 Adults' },
-      { label: 'Display', value: '15.6"' },
-    ],
-    reverse: true,
-  },
-  {
-    id: 'safety',
-    eyebrow: 'Safety',
-    title: 'Protection,\nbuilt in.',
-    description:
-      'A high-strength body, intelligent driver assistance and an OneBox brake-by-wire system work together to shorten distances and keep everyone aboard secure.',
-    image: '/images/showcase-safety.jpg',
-    stats: [
-      { label: 'ADAS', value: 'L2+' },
-      { label: 'Airbags', value: '7' },
-      { label: 'Body', value: 'High-Strength' },
-    ],
-    reverse: false,
-  },
+export const EXPLORE_CARDS: ExploreCard[] = [
+  { title: 'Performance', image: '/images/explore-performance.jpg', href: '/performance' },
+  { title: 'Interior', image: '/images/explore-interior.jpg', href: '/interior' },
+  { title: 'Safety', image: '/images/explore-safety.jpg', href: '/safety' },
+  { title: 'Gallery', image: '/images/explore-gallery.jpg', href: '/gallery' },
 ]
 
-export const EXPLORE_CARDS: ExploreCard[] = [
-  { title: 'Performance', image: '/images/explore-performance.jpg', href: '#performance' },
-  { title: 'Interior', image: '/images/explore-interior.jpg', href: '#interior' },
-  { title: 'Safety', image: '/images/explore-safety.jpg', href: '#safety' },
-  { title: 'Gallery', image: '/images/explore-gallery.jpg', href: '#gallery' },
-]
+// ── Detail pages (separate routes linked from nav + explore cards) ──────────
+export const PAGE_SLUGS = ['performance', 'interior', 'safety', 'gallery'] as const
+
+export const PAGES: Record<DetailPageData['slug'], DetailPageData> = {
+  performance: {
+    slug: 'performance',
+    eyebrow: 'Performance',
+    title: 'Power, delivered instantly.',
+    subtitle: '170 kW of refined electric drive — effortless from the first metre.',
+    heroImage: '/images/page-performance-hero.jpg',
+    blocks: [
+      {
+        id: 'perf-drive',
+        eyebrow: 'Electric Drive',
+        title: 'Calm, immediate\nacceleration.',
+        description:
+          'A high-efficiency flat-wire motor delivers 170 kW and 320 N·m the moment you ask. No lag, no drama — just smooth, confident motion.',
+        image: '/images/showcase-performance.jpg',
+        stats: [
+          { label: 'Power', value: '170 kW' },
+          { label: '0–100 km/h', value: '8.5 s' },
+          { label: 'Top Speed', value: '160 km/h' },
+        ],
+        reverse: false,
+      },
+      {
+        id: 'perf-chassis',
+        eyebrow: 'Chassis',
+        title: 'Composed at\nevery speed.',
+        description:
+          'MacPherson front and multi-link rear suspension, tuned across highway, mountain and rough-road testing, keep the LEV 01 planted and precise.',
+        image: '/images/page-performance-2.jpg',
+        stats: [
+          { label: 'Front', value: 'MacPherson' },
+          { label: 'Rear', value: 'Multi-Link' },
+          { label: 'Steering', value: 'D-EPS' },
+        ],
+        reverse: true,
+      },
+    ],
+  },
+  interior: {
+    slug: 'interior',
+    eyebrow: 'Interior',
+    title: 'A sanctuary in motion.',
+    subtitle: 'Space that breathes, materials chosen for the hand as much as the eye.',
+    heroImage: '/images/page-interior-hero.jpg',
+    blocks: [
+      {
+        id: 'int-cabin',
+        eyebrow: 'Cabin',
+        title: 'Room to\nbreathe.',
+        description:
+          'A 2760 mm wheelbase opens a cabin built around calm. Five adults, generous light, and a layout that makes every arrival feel unhurried.',
+        image: '/images/showcase-interior.jpg',
+        stats: [
+          { label: 'Wheelbase', value: '2760 mm' },
+          { label: 'Seating', value: '5 Adults' },
+          { label: 'Display', value: '15.6"' },
+        ],
+        reverse: false,
+      },
+    ],
+  },
+  safety: {
+    slug: 'safety',
+    eyebrow: 'Safety',
+    title: 'Protection, built in.',
+    subtitle: 'A high-strength body and intelligent assistance, working as one.',
+    heroImage: '/images/page-safety-hero.jpg',
+    blocks: [
+      {
+        id: 'safe-body',
+        eyebrow: 'Structure',
+        title: 'Engineered to\nprotect.',
+        description:
+          'A high-strength safety cage, seven airbags and an OneBox brake-by-wire system shorten distances and keep everyone aboard secure.',
+        image: '/images/showcase-safety.jpg',
+        stats: [
+          { label: 'ADAS', value: 'L2+' },
+          { label: 'Airbags', value: '7' },
+          { label: 'Braking', value: 'OneBox' },
+        ],
+        reverse: false,
+      },
+    ],
+  },
+  gallery: {
+    slug: 'gallery',
+    eyebrow: 'Gallery',
+    title: 'The LEV 01, in full.',
+    subtitle: 'Every angle of a vehicle designed to be looked at.',
+    heroImage: '/images/page-gallery-hero.jpg',
+    blocks: [],
+    gallery: [
+      '/images/gallery-1.jpg',
+      '/images/gallery-2.jpg',
+      '/images/gallery-3.jpg',
+      '/images/gallery-4.jpg',
+      '/images/gallery-5.jpg',
+      '/images/gallery-6.jpg',
+    ],
+  },
+}

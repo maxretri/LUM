@@ -34,7 +34,7 @@ export function Navigation() {
         {/* Nav */}
         <nav className="hidden lg:flex items-center gap-8">
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className={`text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:opacity-60 ${
@@ -42,7 +42,7 @@ export function Navigation() {
               }`}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
