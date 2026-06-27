@@ -38,17 +38,17 @@ export const FEATURES: FeatureCard[] = [
     description: 'Go further with confidence.\nUp to 1000 km of range.',
   },
   {
-    icon: 'zap',
+    icon: 'bolt',
     title: 'Performance',
     description: 'Instant power delivery\nfor every drive.',
   },
   {
-    icon: 'shield',
+    icon: 'wheel',
     title: 'Safety',
     description: 'Engineered for maximum\nprotection and peace of mind.',
   },
   {
-    icon: 'armchair',
+    icon: 'seat',
     title: 'Comfort',
     description: 'Spacious, refined and\ndesigned around you.',
   },

@@ -10,11 +10,11 @@ export function ConfiguratorSection() {
   const [active, setActive] = useState<ColorOption>(COLORS[0])
 
   return (
-    <section className="bg-white pt-20 pb-16">
-      <div className="max-w-[1600px] mx-auto px-8">
+    <section className="bg-white pt-16 pb-14 sm:pt-20 sm:pb-16">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8">
         {/* Heading — compact */}
         <motion.div
-          className="text-center mb-2"
+          className="text-center mb-1"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -24,8 +24,8 @@ export function ConfiguratorSection() {
           <h2 className="text-3xl sm:text-4xl font-extralight text-stone-900">Choose your colour</h2>
         </motion.div>
 
-        {/* Large vehicle — dominates the section */}
-        <div className="relative w-full h-[42vh] sm:h-[56vh] lg:h-[64vh]">
+        {/* Vehicle — aspect-ratio box hugs the car so there is no empty space */}
+        <div className="relative w-full max-w-[1100px] mx-auto aspect-[16/10]">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
@@ -41,15 +41,15 @@ export function ConfiguratorSection() {
                 fill
                 priority
                 className="object-contain object-center"
-                sizes="100vw"
+                sizes="(max-width: 1100px) 100vw, 1100px"
               />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Minimal controls — small, centered under the car */}
+        {/* Minimal controls — sit just under the car */}
         <motion.div
-          className="flex flex-col items-center gap-5 -mt-2"
+          className="flex flex-col items-center gap-4 mt-2"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
