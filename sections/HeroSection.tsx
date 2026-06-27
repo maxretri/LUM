@@ -16,7 +16,7 @@ export function HeroSection() {
       <motion.div className="absolute inset-0 scale-110" style={{ y }}>
         <Image
           src="/images/hero.jpg"
-          alt="LUM LEV 1 — Desert Sand"
+          alt="LUM LEV 01 — Taupe"
           fill
           priority
           className="object-cover object-center"

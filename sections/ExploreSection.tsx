@@ -17,11 +17,11 @@ export function ExploreSection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-2">Discover</p>
-          <h2 className="text-4xl font-extralight text-stone-900">Explore LEV 1</h2>
+          <h2 className="text-4xl font-extralight text-stone-900">Explore LEV 01</h2>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-2 lg:grid-cols-5 gap-3"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}

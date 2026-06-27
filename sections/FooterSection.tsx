@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-const FOOTER_NAV = ['LEV 1', 'Contact', 'Instagram', 'Privacy']
+const FOOTER_NAV = ['LEV 01', 'Contact', 'Instagram', 'Privacy']
 
 export function FooterSection() {
   return (

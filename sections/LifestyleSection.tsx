@@ -14,7 +14,7 @@ export function LifestyleSection() {
       <motion.div className="absolute inset-0" style={{ scale }}>
         <Image
           src="/images/lifestyle.jpg"
-          alt="LUM LEV 1 on the open road"
+          alt="LUM LEV 01 on the open road"
           fill
           className="object-cover object-center"
           sizes="100vw"

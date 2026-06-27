@@ -1,10 +1,9 @@
-import type { ColorOption, SpecItem, FeatureCard, ExploreCard, NavItem } from '@/types'
+import type { ColorOption, SpecItem, FeatureCard, ExploreCard, NavItem, ShowcaseItem } from '@/types'
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Overview', href: '#overview' },
   { label: 'Performance', href: '#performance' },
   { label: 'Interior', href: '#interior' },
-  { label: 'Technology', href: '#technology' },
   { label: 'Safety', href: '#safety' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Specifications', href: '#specifications' },
@@ -42,21 +41,60 @@ export const FEATURES: FeatureCard[] = [
     description: 'Engineered for maximum\nprotection and peace of mind.',
   },
   {
-    icon: 'cpu',
-    title: 'Technology',
-    description: 'Smart features that keep\nyou ahead.',
-  },
-  {
     icon: 'armchair',
     title: 'Comfort',
     description: 'Spacious, refined and\ndesigned around you.',
   },
 ]
 
+export const SHOWCASES: ShowcaseItem[] = [
+  {
+    id: 'performance',
+    eyebrow: 'Performance',
+    title: 'Power, delivered\ninstantly.',
+    description:
+      '170 kW of refined electric power moves the LEV 01 from rest to motion with effortless calm. Every input answered the moment you ask.',
+    image: '/images/showcase-performance.jpg',
+    stats: [
+      { label: 'Power', value: '170 kW' },
+      { label: '0–100 km/h', value: '8.5 s' },
+      { label: 'Top Speed', value: '160 km/h' },
+    ],
+    reverse: false,
+  },
+  {
+    id: 'interior',
+    eyebrow: 'Interior',
+    title: 'A sanctuary\nin motion.',
+    description:
+      'Space that breathes. Materials chosen for the hand as much as the eye. The cabin of the LEV 01 is built to make every journey feel shorter and every arrival calmer.',
+    image: '/images/showcase-interior.jpg',
+    stats: [
+      { label: 'Wheelbase', value: '2760 mm' },
+      { label: 'Seating', value: '5 Adults' },
+      { label: 'Display', value: '15.6"' },
+    ],
+    reverse: true,
+  },
+  {
+    id: 'safety',
+    eyebrow: 'Safety',
+    title: 'Protection,\nbuilt in.',
+    description:
+      'A high-strength body, intelligent driver assistance and an OneBox brake-by-wire system work together to shorten distances and keep everyone aboard secure.',
+    image: '/images/showcase-safety.jpg',
+    stats: [
+      { label: 'ADAS', value: 'L2+' },
+      { label: 'Airbags', value: '7' },
+      { label: 'Body', value: 'High-Strength' },
+    ],
+    reverse: false,
+  },
+]
+
 export const EXPLORE_CARDS: ExploreCard[] = [
   { title: 'Performance', image: '/images/explore-performance.jpg', href: '#performance' },
   { title: 'Interior', image: '/images/explore-interior.jpg', href: '#interior' },
-  { title: 'Technology', image: '/images/explore-technology.jpg', href: '#technology' },
   { title: 'Safety', image: '/images/explore-safety.jpg', href: '#safety' },
   { title: 'Gallery', image: '/images/explore-gallery.jpg', href: '#gallery' },
 ]

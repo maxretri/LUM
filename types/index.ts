@@ -23,6 +23,21 @@ export interface ExploreCard {
   href: string
 }
 
+export interface ShowcaseStat {
+  label: string
+  value: string
+}
+
+export interface ShowcaseItem {
+  id: string
+  eyebrow: string
+  title: string
+  description: string
+  image: string
+  stats: ShowcaseStat[]
+  reverse: boolean
+}
+
 export interface NavItem {
   label: string
   href: string

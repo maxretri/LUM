@@ -9,7 +9,7 @@ export function FeaturesSection() {
     <section className="bg-stone-50 py-28">
       <div className="max-w-[1440px] mx-auto px-8">
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-1"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
