@@ -19,11 +19,10 @@ export const SPECS: SpecItem[] = [
 ]
 
 export const COLORS: ColorOption[] = [
-  { id: 'desert-sand', name: 'Desert Sand', hex: '#C8B49A', image: '/images/car-sand.jpg' },
-  { id: 'storm-grey', name: 'Storm Grey', hex: '#8A9099', image: '/images/car-grey.jpg' },
-  { id: 'midnight', name: 'Midnight', hex: '#2A2D33', image: '/images/car-midnight.jpg' },
+  { id: 'taupe', name: 'Taupe', hex: '#C8B49A', image: '/images/car-taupe.jpg' },
+  { id: 'graphite', name: 'Graphite Grey', hex: '#6E7073', image: '/images/car-grey.jpg' },
+  { id: 'obsidian', name: 'Obsidian Black', hex: '#1A1A1C', image: '/images/car-black.jpg' },
   { id: 'lunar-white', name: 'Lunar White', hex: '#E8E8E4', image: '/images/car-white.jpg' },
-  { id: 'forest', name: 'Forest', hex: '#4A5C4E', image: '/images/car-forest.jpg' },
 ]
 
 export const FEATURES: FeatureCard[] = [

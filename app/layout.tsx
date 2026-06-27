@@ -9,10 +9,10 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: 'LUM — LEV 1',
+  title: 'LUM — LEV 01',
   description: 'The electric vehicle reimagined. Pure range. Pure refinement.',
   openGraph: {
-    title: 'LUM — LEV 1',
+    title: 'LUM — LEV 01',
     description: 'The electric vehicle reimagined. Up to 1000 km of range.',
     type: 'website',
   },

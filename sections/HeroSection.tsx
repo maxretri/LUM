@@ -11,7 +11,7 @@ export function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   return (
-    <section ref={ref} id="overview" className="relative h-screen overflow-hidden">
+    <section ref={ref} id="overview" className="relative h-[58vh] min-h-[420px] overflow-hidden">
       {/* Parallax image */}
       <motion.div className="absolute inset-0 scale-110" style={{ y }}>
         <Image
@@ -28,7 +28,7 @@ export function HeroSection() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 h-full flex flex-col justify-end pb-24 px-8 max-w-[1440px] mx-auto"
+        className="relative z-10 h-full flex flex-col justify-end pb-12 px-8 max-w-[1440px] mx-auto"
         style={{ opacity }}
       >
         <motion.div
@@ -39,10 +39,10 @@ export function HeroSection() {
           <p className="text-white/60 text-xs tracking-[0.4em] uppercase mb-4">
             Introducing
           </p>
-          <h1 className="text-white font-extralight text-7xl md:text-9xl tracking-tight leading-none mb-6">
-            LEV 1
+          <h1 className="text-white font-extralight text-6xl md:text-8xl tracking-tight leading-none mb-4">
+            LEV 01
           </h1>
-          <p className="text-white/70 text-lg font-light tracking-wide max-w-sm">
+          <p className="text-white/70 text-base font-light tracking-wide max-w-sm">
             The electric vehicle reimagined.<br />Pure range. Pure refinement.
           </p>
         </motion.div>
@@ -51,7 +51,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.7 }}
-          className="mt-10 flex gap-4"
+          className="mt-6 flex gap-4"
         >
           <a
             href="#specifications"
@@ -70,7 +70,7 @@ export function HeroSection() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="hidden md:flex absolute bottom-6 right-8 flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
