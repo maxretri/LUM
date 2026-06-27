@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 40" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Placeholder LUM wordmark — replace this file with the real logo.svg (single colour, transparent bg) -->
+  <path d="M8 8 V28 a4 4 0 0 0 4 4 H30"/>
+  <path d="M58 8 V26 a6 6 0 0 0 6 6 H78 a6 6 0 0 0 6-6 V8"/>
+  <path d="M108 32 V8 l16 16 16-16 V32"/>
+  <circle cx="124" cy="30" r="1.2" fill="#000" stroke="none"/>
+</svg>

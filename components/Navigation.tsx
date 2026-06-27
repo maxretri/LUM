@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { Logo } from '@/components/Logo'
 import { NAV_ITEMS } from '@/lib/constants'
 
 export function Navigation() {
@@ -44,9 +45,10 @@ export function Navigation() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className={`text-xl font-light tracking-[0.3em] uppercase transition-colors duration-300 ${dark ? 'text-stone-900' : 'text-white'}`}
+          aria-label="LUM — home"
+          className={`transition-colors duration-300 ${dark ? 'text-stone-900' : 'text-white'}`}
         >
-          LUM
+          <Logo height={18} />
         </Link>
 
         {/* Desktop nav */}

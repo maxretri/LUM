@@ -123,6 +123,34 @@ export const PAGES: Record<DetailPageData['slug'], DetailPageData> = {
         ],
         reverse: false,
       },
+      {
+        id: 'int-cockpit',
+        eyebrow: 'Cockpit',
+        title: 'Everything,\nwithin reach.',
+        description:
+          'A clean, driver-focused cockpit puts a large central display and the essentials at your fingertips, with physical controls kept where they matter.',
+        image: '/images/page-interior-2.jpg',
+        stats: [
+          { label: 'Display', value: '15.6"' },
+          { label: 'Interface', value: 'Voice + Touch' },
+          { label: 'HUD', value: 'Available' },
+        ],
+        reverse: true,
+      },
+      {
+        id: 'int-materials',
+        eyebrow: 'Materials',
+        title: 'Considered\nin the detail.',
+        description:
+          'Soft-touch surfaces, tactile switchgear and a restrained palette make the cabin feel crafted rather than assembled — calm in every finish.',
+        image: '/images/page-interior-3.jpg',
+        stats: [
+          { label: 'Finish', value: 'Soft-Touch' },
+          { label: 'Ambient', value: 'Multi-Zone' },
+          { label: 'Roof', value: 'Panoramic' },
+        ],
+        reverse: false,
+      },
     ],
   },
   safety: {
@@ -135,14 +163,42 @@ export const PAGES: Record<DetailPageData['slug'], DetailPageData> = {
       {
         id: 'safe-body',
         eyebrow: 'Structure',
-        title: 'Engineered to\nprotect.',
+        title: 'Built around\na strong core.',
         description:
-          'A high-strength safety cage, seven airbags and an OneBox brake-by-wire system shorten distances and keep everyone aboard secure.',
+          'A high-strength steel safety cage and engineered crumple zones form a protective shell around every occupant, channelling energy away from the cabin in an impact.',
         image: '/images/showcase-safety.jpg',
         stats: [
-          { label: 'ADAS', value: 'L2+' },
+          { label: 'Body', value: 'High-Strength' },
           { label: 'Airbags', value: '7' },
-          { label: 'Braking', value: 'OneBox' },
+          { label: 'Rating', value: '5-Star Target' },
+        ],
+        reverse: false,
+      },
+      {
+        id: 'safe-adas',
+        eyebrow: 'Driver Assistance',
+        title: 'A second pair\nof eyes.',
+        description:
+          'L2+ ADAS combines adaptive cruise, lane keeping, automatic emergency braking and blind-spot monitoring to support the driver and reduce the chance of a collision before it happens.',
+        image: '/images/page-safety-2.jpg',
+        stats: [
+          { label: 'ADAS', value: 'L2+' },
+          { label: 'Cameras', value: 'Surround' },
+          { label: 'Radar', value: 'Front + Corner' },
+        ],
+        reverse: true,
+      },
+      {
+        id: 'safe-braking',
+        eyebrow: 'Braking',
+        title: 'Stops that\ninspire trust.',
+        description:
+          'The OneBox brake-by-wire system delivers active, high-efficiency braking with shorter stopping distances and precise, redundant control — confidence in every condition.',
+        image: '/images/page-safety-3.jpg',
+        stats: [
+          { label: 'System', value: 'OneBox' },
+          { label: 'Control', value: 'Brake-by-Wire' },
+          { label: 'Redundancy', value: 'Dual-Path' },
         ],
         reverse: false,
       },
