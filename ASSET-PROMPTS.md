@@ -1,114 +1,178 @@
 # LUM LEV 01 — Image Generation Prompts
 
-Copy any prompt into your image AI (Higgsfield / Seedance, Midjourney, etc.).
-**Always attach a LUM LEV 01 reference photo** and run in image-to-image / "reference"
-mode so the car's exact design, proportions and badging stay identical. Pick the
-reference whose angle matches the shot you want (front 3/4, side, rear, rear 3/4).
+Production-ready prompts for the whole site. Every prompt is **self-contained** — you
+don't need to remember a style token. Just:
 
-Save the result over the matching filename in `public/images/` (see `ASSETS.md`).
+1. **Attach a LUM LEV 01 reference photo** that matches the angle of the shot (front
+   3/4, side, rear, rear 3/4) and run in **image-to-image / "use reference" / "edit"**
+   mode so the car's exact body, proportions, light bars and badging stay identical.
+2. Paste the prompt.
+3. Set the **aspect ratio** noted on each shot.
+4. Save the result over the matching filename in `public/images/` (see `ASSETS.md`),
+   then run `rm -rf .next/cache/images` so it re-optimises.
 
----
+**Recommended models:** Nano Banana Pro (Higgsfield), Seedream/Seedance, or Midjourney v6+
+with an image prompt. For video heroes, Seedance image-to-video from the still.
 
-## STYLE — paste this into every prompt (keeps everything consistent with the hero)
+### Which reference to attach
+| Reference angle | Use it for |
+|-----------------|------------|
+| Front 3/4 (sunset hero) | hero, lifestyle, performance, gallery front shots |
+| Full side profile | configurator colours, side gallery, explore-gallery |
+| Rear straight-on | gallery rear, tail-light details |
+| Rear 3/4 | explore-performance, safety braking, gallery |
 
-> Photorealistic automotive photography of the **LUM LEV 01**, a premium electric
-> compact crossover SUV (taupe / champagne metallic paint, gloss-black roof, full-width
-> LED light bars front and rear, black aero alloy wheels). Cinematic, editorial, calm
-> and expensive feel. Soft natural light, gentle reflections, shallow depth of field,
-> ultra-clean composition, lots of negative space, muted warm-neutral palette. 8k,
-> sharp detail, true-to-reference body shape and badging.
-> **Negative:** no other car brands, no logos other than LUM, no text/watermarks, no
-> distortion of the body, no extra doors, no cartoon, no over-saturation.
+### Global negative prompt (append to any generator that supports it)
+> other car brands, competitor logos, badges other than LUM, watermark, text,
+> caption, deformed body, wrong proportions, extra doors, extra wheels, melted
+> reflections, plastic look, cartoon, illustration, oversaturated, HDR halo, lowres,
+> blurry car, duplicate car
 
----
-
-## HERO  → `images/hero.jpg`  (already done — reference for the mood)
-> [STYLE] Front three-quarter view of the LUM LEV 01 parked on a polished concrete
-> plaza at golden-hour sunset, distant mountains, warm low sun flaring from the left,
-> long soft reflections on the wet floor, a minimalist wood-panelled architectural wall
-> on the right. Wide cinematic framing with empty sky for headline text on the upper
-> left. 16:9.
-
-## LIFESTYLE banner  → `images/lifestyle.jpg`  (16:9)
-> [STYLE] The LUM LEV 01 driving on an empty coastal mountain road at dusk, motion blur
-> on the road and background, calm sky, ocean and cliffs in the distance, dynamic but
-> serene, cinematic wide shot. Space at the centre for a large headline. 16:9.
-
----
-
-## CONFIGURATOR colours  → `images/car-grey.jpg`, `car-black.jpg`, `car-white.jpg`
-Use the **side-profile taupe** reference; keep the exact same pose, framing and pure
-white seamless background — only change the body paint colour.
-- `car-grey.jpg`  → "…repaint the body **graphite metallic grey**, dark satin finish."
-- `car-black.jpg` → "…repaint the body **deep obsidian gloss black**, strong specular highlights."
-- `car-white.jpg` → "…repaint the body **pearlescent lunar white**, soft cool shadows."
-> [STYLE] Full side profile of the LUM LEV 01, studio shot on a seamless pure-white
-> background, even soft lighting, subtle contact shadow under the car, centred, no
-> environment. Square-ish 3:2. (Then add the colour line above.)
+### House style (baked into every prompt below)
+Photoreal, cinematic, editorial. Warm-neutral palette, soft natural light, gentle
+reflections, shallow depth of field, lots of clean negative space, calm and expensive.
+35–85mm look, true-to-reference body. 8k, crisp on the car.
 
 ---
 
-## EXPLORE cards (3:4 portrait)  → `images/explore-*.jpg`
-> [STYLE] {SUBJECT}, tall vertical crop, moody low-key studio with a dark gradient
-> background, dramatic rim light along the car's edges, premium and minimal. 3:4 portrait.
-- `explore-performance.jpg` → SUBJECT: "dynamic rear three-quarter of the LUM LEV 01, hint of motion"
-- `explore-interior.jpg` → SUBJECT: "detail of the LUM LEV 01 cabin — steering wheel and central display, warm ambient light"
-- `explore-safety.jpg` → SUBJECT: "close detail of the LUM LEV 01 front LED light bar and sensor array"
-- `explore-gallery.jpg` → SUBJECT: "elegant side silhouette of the LUM LEV 01 against soft graduated light"
+# LANDING PAGE
+
+### `images/hero.jpg` — 16:9 — *(already final; here for reference)*
+> Cinematic photoreal front three-quarter shot of the LUM LEV 01 electric crossover SUV
+> (taupe/champagne metallic, gloss-black roof, full-width LED light bars, black aero
+> alloys), parked on a polished concrete plaza at golden-hour sunset. Low warm sun
+> flaring softly from the left, distant mountain range, a minimalist wood-panelled
+> architectural wall on the right, long mirror-like reflections on the floor. Wide
+> framing with open sky in the upper-left for a headline. Expensive, serene, editorial.
+
+### `images/lifestyle.jpg` — 16:9
+> Cinematic photoreal shot of the LUM LEV 01 driving along an empty coastal mountain
+> road at dusk. Subtle motion blur on the tarmac and guardrail, the car sharp and
+> planted, ocean and cliffs softly out of focus in the distance, warm fading sun, cool
+> blue shadows. Calm, premium, full of air, with negative space in the sky for a
+> centred headline. Keep the car identical to the attached reference.
+
+### Configurator colours — full side profile, 3:2, **pure white seamless studio**
+Attach the side-profile reference. Keep the exact pose, framing, soft contact shadow and
+white background — only change the paint. One image per colour.
+> Studio product photo of the LUM LEV 01, perfect full side profile, centred on a
+> seamless pure-white background, even soft box lighting, subtle realistic contact
+> shadow under the wheels, no environment, no reflections of surroundings. Body paint:
+> **{COLOUR}**. Identical car to the reference.
+
+- `images/car-grey.jpg` → COLOUR = "graphite metallic grey, satin sheen"
+- `images/car-black.jpg` → COLOUR = "deep obsidian gloss black with crisp specular highlights"
+- `images/car-white.jpg` → COLOUR = "pearlescent lunar white with soft cool shadows"
+- `images/car-taupe.jpg` → COLOUR = "taupe / champagne metallic" *(already final)*
+
+### Explore cards — 3:4 **portrait**, moody low-key
+> Tall vertical editorial shot of the LUM LEV 01 in a dark low-key studio, deep graduated
+> charcoal background, a single dramatic rim light tracing the car's edges, premium and
+> minimal, generous dark negative space at the top for a label. Subject: **{SUBJECT}**.
+> Same car as the reference.
+
+- `images/explore-performance.jpg` → SUBJECT = "tight rear three-quarter, sense of motion, wheels turned"
+- `images/explore-interior.jpg` → SUBJECT = "warm-lit detail of the cabin — steering wheel and central display through the side window"
+- `images/explore-safety.jpg` → SUBJECT = "close detail of the front LED light bar and sensor array glowing"
+- `images/explore-gallery.jpg` → SUBJECT = "elegant full side silhouette against a soft graduated light"
 
 ---
 
-## PERFORMANCE page (`/performance`)
-- `page-performance-hero.jpg` (1920×1200)
-  > [STYLE] The LUM LEV 01 on a sweeping mountain road at dusk, low dramatic light,
-  > sense of speed and control, cinematic wide shot, empty sky for a title. 16:10.
-- `showcase-performance.jpg` (4:3) — Electric Drive
-  > [STYLE] Front three-quarter of the LUM LEV 01 accelerating on open tarmac, subtle
-  > motion blur in the background, crisp on the car, golden light. 4:3.
-- `page-performance-2.jpg` (4:3) — Chassis
-  > [STYLE] Low close-up of the LUM LEV 01's front wheel and air-aero detailing in a
-  > dark studio, dramatic side light emphasising the suspension and wheel design. 4:3.
+# PERFORMANCE PAGE  (`/performance`)
 
-## INTERIOR page (`/interior`) — 3 blocks
-- `page-interior-hero.jpg` (1920×1200)
-  > [STYLE] Wide interior shot of the LUM LEV 01 cabin from the rear seats looking
-  > forward, panoramic glass roof, warm daylight, calm minimal dashboard, beige and
-  > black materials. 16:10.
-- `showcase-interior.jpg` (4:3) — Cabin
-  > [STYLE] Spacious front cabin of the LUM LEV 01, two front seats, open airy feel,
-  > soft daylight, premium minimal design. 4:3.
-- `page-interior-2.jpg` (4:3) — Cockpit
-  > [STYLE] Driver-focused cockpit of the LUM LEV 01, large central touchscreen and
-  > steering wheel, clean dashboard, ambient light, shallow depth of field. 4:3.
-- `page-interior-3.jpg` (4:3) — Materials
-  > [STYLE] Macro detail of the LUM LEV 01 interior materials — stitched soft-touch
-  > surface, metal switchgear, ambient light line, luxurious tactile feel. 4:3.
+### `images/page-performance-hero.jpg` — 16:10
+> Cinematic photoreal LUM LEV 01 carving a sweeping empty mountain road at blue-hour
+> dusk, low dramatic key light raking across the body, faint motion in the background,
+> the car crisp and confident, wide negative space in the sky for a title. Identical to
+> the reference.
 
-## SAFETY page (`/safety`) — 3 blocks
-- `page-safety-hero.jpg` (1920×1200)
-  > [STYLE] The LUM LEV 01 in a clean bright studio, three-quarter view, confident and
-  > solid stance, soft even light conveying protection and trust. 16:10.
-- `showcase-safety.jpg` (4:3) — Structure
-  > [STYLE] Stylised view of the LUM LEV 01 body with a subtle visualisation of the
-  > high-strength safety cage / crumple zones glowing softly, dark technical studio,
-  > premium engineering feel. 4:3.
-- `page-safety-2.jpg` (4:3) — Driver Assistance
-  > [STYLE] The LUM LEV 01 front three-quarter with subtle holographic ADAS sensor
-  > arcs and lane-detection lines projected on the road ahead, dusk, high-tech but
-  > restrained. 4:3.
-- `page-safety-3.jpg` (4:3) — Braking
-  > [STYLE] Dynamic low shot of the LUM LEV 01 braking on wet tarmac, water spray, red
-  > glow of tail lights, dramatic and controlled. 4:3.
+### `images/showcase-performance.jpg` — 4:3 — *Electric Drive*
+> Front three-quarter of the LUM LEV 01 accelerating on open tarmac at golden hour,
+> subtle radial motion blur in the background, the car razor-sharp, warm reflections
+> along the bodywork, dynamic but elegant. Same car as the reference.
 
-## GALLERY page (`/gallery`)
-- `page-gallery-hero.jpg` (1920×1200)
-  > [STYLE] Hero beauty shot of the LUM LEV 01, three-quarter front, dramatic gradient
-  > studio light, the definitive portrait of the car. 16:10.
-- `gallery-1.jpg` (large tile) → front three-quarter, golden hour, environment
-- `gallery-2.jpg` → rear three-quarter, studio
-- `gallery-3.jpg` → full side profile, studio
-- `gallery-4.jpg` → rear straight-on, studio (matches your rear reference)
-- `gallery-5.jpg` → wheel / light-bar detail close-up
-- `gallery-6.jpg` → front straight-on, low dramatic light
-> [STYLE] {SUBJECT of the LUM LEV 01}, cohesive premium studio set, consistent
-> lighting across the whole gallery so the six images feel like one shoot. 4:3.
+### `images/page-performance-2.jpg` — 4:3 — *Chassis*
+> Low close-up of the LUM LEV 01's front wheel arch and aero detailing in a dark studio,
+> dramatic side light defining the alloy wheel, brake and air-curtain detail, glossy
+> black surfaces, engineering-beauty feel. Same car as the reference.
+
+---
+
+# INTERIOR PAGE  (`/interior`)  — attach an interior reference if you have one; otherwise describe-only
+
+### `images/page-interior-hero.jpg` — 16:10
+> Wide photoreal interior of the LUM LEV 01 cabin shot from the rear seats looking
+> forward through a panoramic glass roof, warm daylight pouring in, minimalist
+> dashboard with a large central screen, beige nappa and gloss-black trim, airy and
+> serene, shallow depth of field.
+
+### `images/showcase-interior.jpg` — 4:3 — *Cabin*
+> Spacious front cabin of the LUM LEV 01, two sculpted front seats, open uncluttered
+> layout, soft natural daylight, premium beige + black materials, calm and minimal.
+
+### `images/page-interior-2.jpg` — 4:3 — *Cockpit*
+> Driver-focused cockpit of the LUM LEV 01, large 15.6" central touchscreen and a clean
+> two-spoke steering wheel, minimal physical controls, ambient light line across the
+> dash, shallow depth of field, evening cabin glow.
+
+### `images/page-interior-3.jpg` — 4:3 — *Materials*
+> Macro detail of the LUM LEV 01 interior — stitched soft-touch dashboard, knurled metal
+> switchgear, and a thin ambient light strip, warm key light, luxurious tactile texture,
+> very shallow depth of field.
+
+---
+
+# SAFETY PAGE  (`/safety`)
+
+### `images/page-safety-hero.jpg` — 16:10
+> The LUM LEV 01 in a clean bright high-key studio, confident front three-quarter
+> stance, soft even wraparound light, solid and reassuring mood, lots of clean space.
+> Identical to the reference.
+
+### `images/showcase-safety.jpg` — 4:3 — *Structure*
+> Technical hero of the LUM LEV 01 in a dark studio with a subtle X-ray-style glow
+> revealing the high-strength safety cage and crumple zones inside the body, cool blue
+> accent light, premium engineering visualisation, the exterior still photoreal and
+> true to the reference.
+
+### `images/page-safety-2.jpg` — 4:3 — *Driver Assistance*
+> Front three-quarter of the LUM LEV 01 at dusk with restrained holographic ADAS
+> graphics — faint sensor arcs and lane-detection lines projected on the road ahead —
+> high-tech but tasteful, not cluttered. Same car as the reference.
+
+### `images/page-safety-3.jpg` — 4:3 — *Braking*
+> Dynamic low shot of the LUM LEV 01 braking firmly on wet night tarmac, fine water
+> spray, red tail-light glow reflecting on the road, controlled and dramatic, cinematic.
+> Same car as the reference (use the rear or rear-3/4 reference).
+
+---
+
+# GALLERY PAGE  (`/gallery`)  — shoot these as ONE cohesive set (same light & background)
+
+### `images/page-gallery-hero.jpg` — 16:10
+> Definitive beauty portrait of the LUM LEV 01, front three-quarter, dramatic graduated
+> studio light from behind, glossy floor, the hero portrait of the car. Identical to the
+> reference.
+
+Six tiles, 4:3, consistent premium studio set (tile 1 is large):
+- `images/gallery-1.jpg` → front three-quarter, golden-hour environment, wide
+- `images/gallery-2.jpg` → rear three-quarter in studio, rim-lit *(use rear-3/4 ref)*
+- `images/gallery-3.jpg` → full side profile, studio *(use side ref)*
+- `images/gallery-4.jpg` → rear straight-on, studio, tail light bar lit *(use rear ref)*
+- `images/gallery-5.jpg` → macro detail — alloy wheel + air curtain
+- `images/gallery-6.jpg` → front straight-on, low dramatic key light *(use front ref)*
+
+> Studio shot of the LUM LEV 01, {SUBJECT}, on a smooth graduated grey-to-charcoal
+> background with a polished reflective floor, consistent soft key + edge light so all
+> six images read as one shoot, premium and minimal. Same car as the reference.
+
+---
+
+## Tips for a clean, consistent result
+- Generate **2–4 variations** per slot and keep the best.
+- Keep the **same background description** across a page so blocks feel like one set.
+- If a generator drifts the body shape, lower the prompt strength / raise the
+  image-reference weight, or switch to an "edit/restyle" mode on the reference.
+- For moving hero shots, generate the still first, then **image-to-video (Seedance)**
+  with a short prompt like "slow cinematic dolly, gentle parallax, subtle ambient
+  motion, 4s loop".
