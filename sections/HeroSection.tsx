@@ -11,7 +11,7 @@ export function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   return (
-    <section ref={ref} id="overview" className="relative h-[58vh] min-h-[420px] overflow-hidden">
+    <section ref={ref} id="overview" className="relative h-[70vh] min-h-[480px] overflow-hidden">
       {/* Parallax image */}
       <motion.div className="absolute inset-0 scale-110" style={{ y }}>
         <Image
