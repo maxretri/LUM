@@ -3,11 +3,14 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { COLORS } from '@/lib/constants'
-import type { ColorOption } from '@/types'
+import { COLORS, CAR_VIEWS } from '@/lib/constants'
+import type { ColorOption, CarView } from '@/types'
 
 export function ConfiguratorSection() {
   const [active, setActive] = useState<ColorOption>(COLORS[0])
+  const [view, setView] = useState<CarView>('side')
+
+  const src = active.images[view]
 
   return (
     <section className="bg-white pt-16 pb-14 sm:pt-20 sm:pb-16">
@@ -24,20 +27,20 @@ export function ConfiguratorSection() {
           <h2 className="text-3xl sm:text-4xl font-extralight text-stone-900">Choose your colour</h2>
         </motion.div>
 
-        {/* Vehicle — aspect-ratio box hugs the car so there is no empty space */}
+        {/* Vehicle — crossfades on both colour and angle change */}
         <div className="relative w-full max-w-[1100px] mx-auto aspect-[16/10]">
           <AnimatePresence mode="wait">
             <motion.div
-              key={active.id}
+              key={src}
               className="absolute inset-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              transition={{ duration: 0.45, ease: 'easeInOut' }}
             >
               <Image
-                src={active.image}
-                alt={`LUM LEV 01 in ${active.name}`}
+                src={src}
+                alt={`LUM LEV 01 in ${active.name} — ${view} view`}
                 fill
                 priority
                 className="object-contain object-center"
@@ -47,9 +50,44 @@ export function ConfiguratorSection() {
           </AnimatePresence>
         </div>
 
-        {/* Minimal controls — sit just under the car */}
+        {/* Angle switcher — sits just under the car */}
         <motion.div
-          className="flex flex-col items-center gap-4 mt-2"
+          className="flex justify-center mt-1"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="inline-flex items-center gap-1 border border-stone-200 rounded-full p-1">
+            {CAR_VIEWS.map((v) => {
+              const activeView = v.id === view
+              return (
+                <button
+                  key={v.id}
+                  type="button"
+                  onClick={() => setView(v.id)}
+                  aria-pressed={activeView}
+                  className={`relative px-4 py-1.5 rounded-full text-[11px] tracking-[0.15em] uppercase transition-colors duration-300 ${
+                    activeView ? 'text-white' : 'text-stone-500 hover:text-stone-900'
+                  }`}
+                >
+                  {activeView && (
+                    <motion.span
+                      layoutId="view-pill"
+                      className="absolute inset-0 rounded-full bg-stone-900"
+                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{v.label}</span>
+                </button>
+              )
+            })}
+          </div>
+        </motion.div>
+
+        {/* Colour selector */}
+        <motion.div
+          className="flex flex-col items-center gap-4 mt-6"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}

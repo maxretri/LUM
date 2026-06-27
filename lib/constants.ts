@@ -1,5 +1,7 @@
 import type {
   ColorOption,
+  CarView,
+  ViewOption,
   SpecItem,
   FeatureCard,
   ExploreCard,
@@ -24,11 +26,25 @@ export const SPECS: SpecItem[] = [
   { label: 'Drive', value: 'FWD', unit: '' },
 ]
 
+export const CAR_VIEWS: ViewOption[] = [
+  { id: 'front', label: 'Front' },
+  { id: 'threequarter', label: '45°' },
+  { id: 'side', label: 'Side' },
+  { id: 'back', label: 'Back' },
+]
+
+const carImages = (file: string): Record<CarView, string> => ({
+  front: `/images/car-${file}-front.jpg`,
+  threequarter: `/images/car-${file}-threequarter.jpg`,
+  side: `/images/car-${file}-side.jpg`,
+  back: `/images/car-${file}-back.jpg`,
+})
+
 export const COLORS: ColorOption[] = [
-  { id: 'taupe', name: 'Taupe', hex: '#C8B49A', image: '/images/car-taupe.jpg' },
-  { id: 'graphite', name: 'Graphite Grey', hex: '#6E7073', image: '/images/car-grey.jpg' },
-  { id: 'obsidian', name: 'Obsidian Black', hex: '#1A1A1C', image: '/images/car-black.jpg' },
-  { id: 'lunar-white', name: 'Lunar White', hex: '#E8E8E4', image: '/images/car-white.jpg' },
+  { id: 'taupe', name: 'Taupe', hex: '#C8B49A', images: carImages('taupe') },
+  { id: 'graphite', name: 'Graphite Grey', hex: '#6E7073', images: carImages('grey') },
+  { id: 'obsidian', name: 'Obsidian Black', hex: '#1A1A1C', images: carImages('black') },
+  { id: 'lunar-white', name: 'Lunar White', hex: '#E8E8E4', images: carImages('white') },
 ]
 
 export const FEATURES: FeatureCard[] = [

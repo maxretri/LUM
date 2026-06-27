@@ -1,8 +1,15 @@
+export type CarView = 'front' | 'threequarter' | 'side' | 'back'
+
+export interface ViewOption {
+  id: CarView
+  label: string
+}
+
 export interface ColorOption {
   id: string
   name: string
   hex: string
-  image: string
+  images: Record<CarView, string>
 }
 
 export interface SpecItem {

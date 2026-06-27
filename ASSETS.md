@@ -30,10 +30,21 @@ Swap any of these single-colour SVGs (transparent bg). They recolour on hover au
 | File | Where | Recommended size | Status |
 |------|-------|------------------|--------|
 | `images/hero.jpg` | Hero background (front 3/4, sunset) | 1920×1080+ | ✅ real |
-| `images/car-taupe.jpg` | Configurator — Taupe | 1536×1024, **white bg** | ✅ real |
-| `images/car-grey.jpg` | Configurator — Graphite Grey | 1536×1024, white bg | 🟠 derived from taupe |
-| `images/car-black.jpg` | Configurator — Obsidian Black | 1536×1024, white bg | 🟠 derived from taupe |
-| `images/car-white.jpg` | Configurator — Lunar White | 1536×1024, white bg | 🟠 derived from taupe |
+| **Configurator (4 colours × 4 angles = 16 files)** | see below | 1536×1024, **white bg** | mixed |
+
+The configurator now has an **angle switcher** (Front / 45° / Side / Back). Each colour
+needs four images named `car-<colour>-<view>.jpg`:
+- colours: `taupe`, `grey`, `black`, `white`
+- views: `front`, `threequarter` (= 45°), `side`, `back`
+
+| File pattern | Status |
+|--------------|--------|
+| `car-taupe-side.jpg` | ✅ real |
+| `car-{grey,black,white}-side.jpg` | 🟠 recoloured from taupe side |
+| `car-{taupe,grey,black,white}-{front,threequarter,back}.jpg` (12 files) | 🟡 placeholder |
+
+> Keep all four angles of a colour on the **same pure-white background** so switching
+> views is seamless. Prompts for each angle are in `ASSET-PROMPTS.md` → "Configurator".
 | `images/lifestyle.jpg` | Full-width banner ("Drive further") | 1920×1080, 16:9 | 🟡 placeholder |
 | `images/explore-performance.jpg` | Explore card → /performance | 900×1200, 3:4 portrait | 🟡 placeholder |
 | `images/explore-interior.jpg` | Explore card → /interior | 900×1200, 3:4 | 🟡 placeholder |

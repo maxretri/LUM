@@ -52,18 +52,30 @@ reflections, shallow depth of field, lots of clean negative space, calm and expe
 > blue shadows. Calm, premium, full of air, with negative space in the sky for a
 > centred headline. Keep the car identical to the attached reference.
 
-### Configurator colours — full side profile, 3:2, **pure white seamless studio**
-Attach the side-profile reference. Keep the exact pose, framing, soft contact shadow and
-white background — only change the paint. One image per colour.
-> Studio product photo of the LUM LEV 01, perfect full side profile, centred on a
-> seamless pure-white background, even soft box lighting, subtle realistic contact
-> shadow under the wheels, no environment, no reflections of surroundings. Body paint:
-> **{COLOUR}**. Identical car to the reference.
+### Configurator — 4 colours × 4 angles, 3:2, **pure white seamless studio**
+The configurator has an angle switcher, so each colour needs **four shots** on the same
+pure-white background and same framing. File names: `car-<colour>-<view>.jpg` where
+colour ∈ {taupe, grey, black, white} and view ∈ {front, threequarter, side, back}.
 
-- `images/car-grey.jpg` → COLOUR = "graphite metallic grey, satin sheen"
-- `images/car-black.jpg` → COLOUR = "deep obsidian gloss black with crisp specular highlights"
-- `images/car-white.jpg` → COLOUR = "pearlescent lunar white with soft cool shadows"
-- `images/car-taupe.jpg` → COLOUR = "taupe / champagne metallic" *(already final)*
+Base prompt (swap {COLOUR} and {ANGLE}):
+> Studio product photo of the LUM LEV 01, **{ANGLE}**, centred on a seamless pure-white
+> background, even soft box lighting, subtle realistic contact shadow under the wheels,
+> no environment, no surrounding reflections, consistent framing and camera height
+> across all angles. Body paint: **{COLOUR}**. Identical car to the reference.
+
+- {ANGLE} options (attach the matching reference each time):
+  - `…-front.jpg` → "straight-on front view, slight high angle"
+  - `…-threequarter.jpg` → "front three-quarter (45°) view"
+  - `…-side.jpg` → "perfect full side profile"
+  - `…-back.jpg` → "straight-on rear view"
+- {COLOUR} options:
+  - taupe → "taupe / champagne metallic" *(side already final)*
+  - grey → "graphite metallic grey, satin sheen"
+  - black → "deep obsidian gloss black with crisp specular highlights"
+  - white → "pearlescent lunar white with soft cool shadows"
+
+> Tip: shoot/generate all four angles of ONE colour first with identical lighting, then
+> repeat per colour — keeps the switcher seamless.
 
 ### Explore cards — 3:4 **portrait**, moody low-key
 > Tall vertical editorial shot of the LUM LEV 01 in a dark low-key studio, deep graduated

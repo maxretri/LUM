@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f1eee9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1536" height="1024" fill="url(#bg)"/>
+  <ellipse cx="768" cy="760" rx="420" ry="34" fill="#c8b49a" fill-opacity="0.18"/>
+  <text x="768" y="500" font-family="Helvetica, Arial, sans-serif" font-size="40" letter-spacing="14" fill="#9c8f7c" text-anchor="middle" font-weight="300">TAUPE · BACK</text>
+  <text x="768" y="552" font-family="Helvetica, Arial, sans-serif" font-size="17" letter-spacing="7" fill="#b8ab98" text-anchor="middle">LEV 01 · VISUAL PLACEHOLDER</text>
+</svg>
