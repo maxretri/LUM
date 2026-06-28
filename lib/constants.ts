@@ -19,11 +19,11 @@ export const NAV_ITEMS: NavItem[] = [
 ]
 
 export const SPECS: SpecItem[] = [
-  { label: 'Range', value: '1000', unit: 'km' },
-  { label: 'Power', value: '170', unit: 'kW' },
-  { label: '0–100 km/h', value: '8.5', unit: 's' },
-  { label: 'Battery', value: '40', unit: 'kWh' },
-  { label: 'Drive', value: 'FWD', unit: '' },
+  { label: 'WLTP Range', value: '540', unit: 'km · up to' },
+  { label: 'Fast Charging', value: '800', unit: 'V' },
+  { label: 'Drivetrain', value: 'AWD', unit: 'ready' },
+  { label: 'Charging', value: 'V2H', unit: 'bi-directional' },
+  { label: 'Safety', value: 'Euro', unit: 'NCAP' },
 ]
 
 export const CAR_VIEWS: ViewOption[] = [
