@@ -3,6 +3,8 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import type { ShowcaseItem } from '@/types'
 
 interface ShowcaseSectionProps {
@@ -62,6 +64,16 @@ export function ShowcaseSection({ item }: ShowcaseSectionProps) {
                 </div>
               ))}
             </div>
+
+            {item.cta && (
+              <Link
+                href={item.cta.href}
+                className="inline-flex items-center gap-3 mt-10 text-xs tracking-[0.2em] uppercase text-stone-900 border border-stone-900 px-6 py-3.5 hover:bg-stone-900 hover:text-white transition-colors duration-300"
+              >
+                {item.cta.label}
+                <ArrowRight size={16} />
+              </Link>
+            )}
           </motion.div>
         </div>
       </div>

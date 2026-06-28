@@ -15,7 +15,7 @@ export function HeroSection() {
       {/* Parallax image */}
       <motion.div className="absolute inset-0 scale-110" style={{ y }}>
         <Image
-          src="/images/hero.jpg"
+          src="/images/home/hero.jpg"
           alt="LUM LEV 01 — Taupe"
           fill
           priority

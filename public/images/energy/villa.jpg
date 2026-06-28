@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22312a"/><stop offset="100%" stop-color="#11160f"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="60%"><stop offset="0%" stop-color="#9fd2a8" stop-opacity="0.12"/><stop offset="100%" stop-color="#9fd2a8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <text x="50%" y="49%" font-family="Helvetica, Arial, sans-serif" font-size="34" letter-spacing="12" fill="#9fd2a8" fill-opacity="0.9" text-anchor="middle" font-weight="300">VILLA · SOLAR + ESS</text>
+  <text x="50%" y="54%" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="6" fill="#ffffff" fill-opacity="0.30" text-anchor="middle">LUM ENERGY · VISUAL PLACEHOLDER</text>
+</svg>

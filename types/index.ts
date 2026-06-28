@@ -35,6 +35,11 @@ export interface ShowcaseStat {
   value: string
 }
 
+export interface ShowcaseCta {
+  label: string
+  href: string
+}
+
 export interface ShowcaseItem {
   id: string
   eyebrow: string
@@ -43,9 +48,16 @@ export interface ShowcaseItem {
   image: string
   stats: ShowcaseStat[]
   reverse: boolean
+  cta?: ShowcaseCta
 }
 
-export type DetailSlug = 'performance' | 'interior' | 'safety' | 'gallery'
+export type DetailSlug =
+  | 'performance'
+  | 'interior'
+  | 'safety'
+  | 'gallery'
+  | 'energy'
+  | 'commercial'
 
 export interface DetailPageData {
   slug: DetailSlug
