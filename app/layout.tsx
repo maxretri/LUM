@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 import './globals.css'
 import { CookieConsent } from '@/components/CookieConsent'
+import { QuoteModal } from '@/components/QuoteModal'
 
 const geist = Geist({
   variable: '--font-sans',
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body className="antialiased bg-white text-stone-900 font-sans">
         {children}
         <CookieConsent />
+        <QuoteModal />
       </body>
     </html>
   )
 }
+
