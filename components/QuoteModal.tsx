@@ -150,25 +150,45 @@ export function QuoteModal() {
     setStep((s) => Math.max(1, s - 1))
   }
 
-  const handleSubmitLead = () => {
+  const handleSubmitLead = async () => {
     setIsSubmitting(true)
+    const price = BASE_PRICE + selectedEnergy.price
 
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setStep(4) // Success step
-
-      // Store in localStorage for reference
-      const leads = JSON.parse(localStorage.getItem('lum_quotes') || '[]')
-      leads.push({
-        date: new Date().toISOString(),
-        color: selectedColor.name,
-        energy: selectedEnergy.name,
-        price: BASE_PRICE + selectedEnergy.price,
-        contact: formData,
+    try {
+      const response = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'quote',
+          data: {
+            color: selectedColor.name,
+            energy: selectedEnergy.name,
+            price,
+            ...formData,
+          },
+        }),
       })
-      localStorage.setItem('lum_quotes', JSON.stringify(leads))
-    }, 1500)
+
+      if (!response.ok) {
+        console.error('Failed to send Telegram notification')
+      }
+    } catch (err) {
+      console.error('Error sending Telegram notification:', err)
+    }
+
+    setIsSubmitting(false)
+    setStep(4) // Success step
+
+    // Store in localStorage for reference
+    const leads = JSON.parse(localStorage.getItem('lum_quotes') || '[]')
+    leads.push({
+      date: new Date().toISOString(),
+      color: selectedColor.name,
+      energy: selectedEnergy.name,
+      price,
+      contact: formData,
+    })
+    localStorage.setItem('lum_quotes', JSON.stringify(leads))
   }
 
   const totalPrice = BASE_PRICE + selectedEnergy.price

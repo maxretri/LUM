@@ -23,7 +23,7 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [id]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     // Validation
@@ -48,27 +48,41 @@ export default function ContactPage() {
     setErrors({})
     setIsSubmitting(true)
 
-    // Simulate database submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSuccess(true)
-      
-      // Store in localStorage for audit
-      const messages = JSON.parse(localStorage.getItem('lum_messages') || '[]')
-      messages.push({
-        date: new Date().toISOString(),
-        ...formData,
+    try {
+      const response = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact',
+          data: formData,
+        }),
       })
-      localStorage.setItem('lum_messages', JSON.stringify(messages))
 
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      })
-    }, 1500)
+      if (!response.ok) {
+        console.error('Failed to send Telegram contact notification')
+      }
+    } catch (err) {
+      console.error('Error sending Telegram contact notification:', err)
+    }
+
+    setIsSubmitting(false)
+    setIsSuccess(true)
+    
+    // Store in localStorage for audit
+    const messages = JSON.parse(localStorage.getItem('lum_messages') || '[]')
+    messages.push({
+      date: new Date().toISOString(),
+      ...formData,
+    })
+    localStorage.setItem('lum_messages', JSON.stringify(messages))
+
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    })
   }
 
   return (
