@@ -586,7 +586,7 @@ export function QuoteModal() {
 
                       {/* Form Inputs Grid */}
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-1.5">
+                        <div className="col-span-2 sm:col-span-1 flex flex-col gap-1.5">
                           <label htmlFor="firstName" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">First Name</label>
                           <input
                             type="text"
@@ -601,7 +601,7 @@ export function QuoteModal() {
                           {errors.firstName && <span className="text-[9px] text-red-500 font-medium mt-0.5">{errors.firstName}</span>}
                         </div>
 
-                        <div className="flex flex-col gap-1.5">
+                        <div className="col-span-2 sm:col-span-1 flex flex-col gap-1.5">
                           <label htmlFor="lastName" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">Last Name</label>
                           <input
                             type="text"
@@ -715,7 +715,7 @@ export function QuoteModal() {
               {/* Footer Actions */}
               {step < 4 && (
                 <div className="flex justify-between items-center px-6 py-5 border-t border-stone-100 shrink-0 bg-stone-50/50">
-                  <div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
                     {step > 1 ? (
                       <button
                         type="button"
@@ -727,6 +727,11 @@ export function QuoteModal() {
                     ) : (
                       <span className="text-[10px] text-stone-300 uppercase tracking-widest font-semibold select-none">Start Configuration</span>
                     )}
+
+                    {/* Show price on mobile next to back button */}
+                    <div className="md:hidden text-[11px] text-stone-500 tracking-wide mt-0.5">
+                      Total: <span className="font-semibold text-stone-900">€{totalPrice.toLocaleString()}</span>
+                    </div>
                   </div>
 
                   <div>
@@ -734,12 +739,12 @@ export function QuoteModal() {
                       type="button"
                       disabled={isSubmitting}
                       onClick={handleNext}
-                      className="inline-flex items-center gap-2 bg-stone-900 text-white text-xs tracking-wider uppercase font-medium px-6 py-3.5 hover:bg-stone-800 disabled:opacity-50 transition-all duration-300 cursor-pointer rounded-lg shadow"
+                      className="inline-flex items-center gap-2 bg-stone-900 text-white text-xs tracking-wider uppercase font-medium px-5 sm:px-6 py-3 sm:py-3.5 hover:bg-stone-850 disabled:opacity-50 transition-all duration-300 cursor-pointer rounded-lg shadow"
                     >
                       {isSubmitting ? (
-                        <>Processing allocation...</>
+                        <>Processing...</>
                       ) : step === 3 ? (
-                        <>Submit Quote Request <Check size={14} /></>
+                        <>Submit Quote <Check size={14} /></>
                       ) : (
                         <>Next Step <ArrowRight size={14} /></>
                       )}

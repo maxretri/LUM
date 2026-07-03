@@ -111,19 +111,19 @@ export function GalleryGrid({ images }: GalleryGridProps) {
             {/* Close button */}
             <button
               onClick={handleClose}
-              className="absolute top-6 right-6 z-10 text-white/70 hover:text-white transition-colors p-2 bg-stone-900/50 rounded-full backdrop-blur cursor-pointer"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 text-white/70 hover:text-white transition-colors p-2 bg-stone-900/50 rounded-full backdrop-blur cursor-pointer"
               aria-label="Close gallery lightbox"
             >
-              <X size={22} strokeWidth={1.5} />
+              <X size={20} strokeWidth={1.5} />
             </button>
 
             {/* Navigation Left */}
             <button
               onClick={handlePrev}
-              className="absolute left-6 z-10 text-white/70 hover:text-white transition-colors p-2.5 bg-stone-900/50 rounded-full backdrop-blur cursor-pointer"
+              className="absolute left-3 sm:left-6 z-10 text-white/70 hover:text-white transition-colors p-2 sm:p-2.5 bg-stone-900/50 rounded-full backdrop-blur cursor-pointer"
               aria-label="Previous image"
             >
-              <ChevronLeft size={24} strokeWidth={1.5} />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
             </button>
 
             {/* Main Image Container */}
@@ -133,7 +133,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="relative w-full max-w-4xl h-[75vh] max-h-[600px] flex items-center justify-center"
+              className="relative w-full max-w-4xl h-[65vh] sm:h-[75vh] max-h-[460px] sm:max-h-[600px] flex items-center justify-center"
             >
               <Image
                 src={images[activeIdx]}
@@ -148,10 +148,10 @@ export function GalleryGrid({ images }: GalleryGridProps) {
             {/* Navigation Right */}
             <button
               onClick={handleNext}
-              className="absolute right-6 z-10 text-white/70 hover:text-white transition-colors p-2.5 bg-stone-900/50 rounded-full backdrop-blur cursor-pointer"
+              className="absolute right-3 sm:right-6 z-10 text-white/70 hover:text-white transition-colors p-2 sm:p-2.5 bg-stone-900/50 rounded-full backdrop-blur cursor-pointer"
               aria-label="Next image"
             >
-              <ChevronRight size={24} strokeWidth={1.5} />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
             </button>
 
             {/* Index Counter at bottom */}
