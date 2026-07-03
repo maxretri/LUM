@@ -9,9 +9,10 @@ interface PageHeroProps {
   title: string
   subtitle: string
   image: string
+  align?: 'top' | 'bottom'
 }
 
-export function PageHero({ eyebrow, title, subtitle, image }: PageHeroProps) {
+export function PageHero({ eyebrow, title, subtitle, image, align = 'bottom' }: PageHeroProps) {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
@@ -25,7 +26,9 @@ export function PageHero({ eyebrow, title, subtitle, image }: PageHeroProps) {
       </motion.div>
 
       <motion.div
-        className="relative z-10 h-full flex flex-col justify-end pb-16 px-8 max-w-[1440px] mx-auto"
+        className={`relative z-10 h-full flex flex-col px-8 max-w-[1440px] mx-auto ${
+          align === 'top' ? 'justify-start pt-28 sm:pt-32' : 'justify-end pb-16'
+        }`}
         style={{ opacity }}
       >
         <motion.p

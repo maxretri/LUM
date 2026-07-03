@@ -21,6 +21,7 @@ export function DetailPageView({ data }: DetailPageViewProps) {
           title={data.title}
           subtitle={data.subtitle}
           image={data.heroImage}
+          align={data.slug === 'energy' || data.slug === 'performance' ? 'top' : 'bottom'}
         />
 
         {data.blocks.map((item) => (
