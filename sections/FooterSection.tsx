@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Logo } from '@/components/Logo'
+import { Instagram } from 'lucide-react'
 
 const FOOTER_LINKS: { label: string; href: string }[] = [
   { label: 'LEV 01', href: '/#overview' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Contact', href: '/#quote' },
+  { label: 'Contact', href: '/contact' },
   { label: 'Instagram', href: 'https://instagram.com' },
   { label: 'Terms', href: '/terms' },
   { label: 'Privacy', href: '/privacy' },
@@ -40,10 +41,22 @@ export function FooterSection() {
           ))}
         </nav>
 
-        <p className="text-[10px] text-stone-300 tracking-wider whitespace-nowrap">
-          © {new Date().getFullYear()} LUM Automotive
-        </p>
+        <div className="flex items-center gap-4.5">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-stone-300 hover:text-stone-700 transition-colors duration-300"
+            aria-label="LUM Instagram"
+          >
+            <Instagram size={16} strokeWidth={1.5} />
+          </a>
+          <p className="text-[10px] text-stone-300 tracking-wider whitespace-nowrap">
+            © {new Date().getFullYear()} LUM Automotive
+          </p>
+        </div>
       </motion.div>
     </footer>
   )
 }
+

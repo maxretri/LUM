@@ -16,6 +16,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Interior', href: '/interior' },
   { label: 'Safety', href: '/safety' },
   { label: 'Gallery', href: '/#gallery' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export const SPECS: SpecItem[] = [
