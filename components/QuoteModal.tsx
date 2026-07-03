@@ -80,6 +80,11 @@ export function QuoteModal() {
 
   // Listen to hash changes to trigger modal
   useEffect(() => {
+    // Clear the hash on initial mount if it exists, so it doesn't open automatically on reload
+    if (window.location.hash === '#quote') {
+      window.history.replaceState(null, '', window.location.pathname)
+    }
+
     const handleHashChange = () => {
       const isQuote = window.location.hash === '#quote'
       setIsOpen(isQuote)
@@ -88,7 +93,6 @@ export function QuoteModal() {
       }
     }
 
-    handleHashChange()
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
@@ -384,9 +388,7 @@ export function QuoteModal() {
                       </div>
 
                       {/* Large High Definition Dynamic Preview */}
-                      <div className="relative w-full aspect-[16/9] max-h-[220px] bg-stone-50/50 rounded-xl border border-stone-100/80 flex items-center justify-center p-4 overflow-hidden">
-                        {/* Soft background glow matching paint */}
-                        <div className="absolute w-[220px] h-[100px] rounded-full blur-3xl opacity-20 pointer-events-none" style={{ backgroundColor: selectedColor.hex }} />
+                      <div className="relative w-full aspect-[16/9] max-h-[220px] bg-white flex items-center justify-center p-2 overflow-hidden">
                         <div className="relative w-full h-full">
                           <Image
                             src={selectedColor.images.threequarter}
