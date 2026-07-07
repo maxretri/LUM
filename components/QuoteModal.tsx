@@ -96,6 +96,16 @@ export function QuoteModal() {
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(1) // Steps 1 to 4
 
+  useEffect(() => {
+    // Preload all 16 configuration images for QuoteModal
+    COLORS.forEach((color) => {
+      Object.values(color.images).forEach((imgSrc) => {
+        const img = new window.Image()
+        img.src = imgSrc
+      })
+    })
+  }, [])
+
   // Configuration State
   const [selectedColor, setSelectedColor] = useState(COLORS[0]) // Default: Taupe
   const [selectedEnergy, setSelectedEnergy] = useState(ENERGY_PACKAGES[0]) // Default: None
@@ -443,13 +453,24 @@ export function QuoteModal() {
                       {/* Large High Definition Dynamic Preview */}
                       <div className="relative w-full aspect-[16/9] max-h-[220px] bg-white flex items-center justify-center p-2 overflow-hidden">
                         <div className="relative w-full h-full">
-                          <Image
-                            src={selectedColor.images.threequarter}
-                            alt={selectedColor.name}
-                            fill
-                            className="object-contain transition-all duration-700 ease-out"
-                            priority
-                          />
+                          <AnimatePresence>
+                            <motion.div
+                              key={selectedColor.images.threequarter}
+                              className="absolute inset-0"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.25, ease: 'easeOut' }}
+                            >
+                              <Image
+                                src={selectedColor.images.threequarter}
+                                alt={selectedColor.name}
+                                fill
+                                className="object-contain"
+                                priority
+                              />
+                            </motion.div>
+                          </AnimatePresence>
                         </div>
                       </div>
 

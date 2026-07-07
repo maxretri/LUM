@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { COLORS, CAR_VIEWS } from '@/lib/constants'
@@ -11,6 +11,16 @@ export function ConfiguratorSection() {
   const { t } = useLanguage()
   const [active, setActive] = useState<ColorOption>(COLORS[0])
   const [view, setView] = useState<CarView>('side')
+
+  useEffect(() => {
+    // Preload all 16 configuration images for lag-free switching
+    COLORS.forEach((color) => {
+      Object.values(color.images).forEach((imgSrc) => {
+        const img = new window.Image()
+        img.src = imgSrc
+      })
+    })
+  }, [])
 
   const src = active.images[view]
 
@@ -31,14 +41,14 @@ export function ConfiguratorSection() {
 
         {/* Vehicle — crossfades on both colour and angle change */}
         <div className="relative w-full max-w-[1100px] mx-auto aspect-[16/10]">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
               key={src}
               className="absolute inset-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.45, ease: 'easeInOut' }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
               <Image
                 src={src}
