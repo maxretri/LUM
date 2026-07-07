@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Send, Loader2, Sparkles, Sliders } from 'lucide-react'
+import { X, Send, Loader2, MessageCircle, Sliders } from 'lucide-react'
+import { useLanguage } from '@/lib/LanguageContext'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -10,13 +11,9 @@ interface Message {
 }
 
 export function AIChatWidget() {
+  const { language } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: 'Приветствую. Я интеллектуальный ассистент LUM. Я могу ответить на любые вопросы о технических характеристиках кроссовера LUM V5, о его запасе хода (1000 км), гибридной платформе REEV, безопасности или помочь вам оформить предзаказ. Чем я могу помочь вам сегодня?',
-    },
-  ])
+  const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -25,6 +22,20 @@ export function AIChatWidget() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isLoading])
+
+  // Sync greeting message when language shifts
+  useEffect(() => {
+    const greeting = language === 'es'
+      ? 'Hola. Soy el Asistente Inteligente de LUM. Puedo responder a cualquier pregunta sobre las especificaciones del SUV LUM V5, su autonomía (1000 km), la plataforma híbrida REEV, la seguridad, o ayudarle a configurar y reservar el suyo. ¿Cómo puedo ayudarle hoy?'
+      : 'Hello. I am the LUM Intelligent Assistant. I can answer any questions about the specifications of the LUM V5 SUV, its range (1000 km), REEV hybrid platform, safety features, or help you configure and reserve yours. How can I assist you today?'
+    
+    setMessages([
+      {
+        role: 'assistant',
+        content: greeting,
+      },
+    ])
+  }, [language])
 
   // Reset hash when quote is launched to allow relaunching
   const handleLaunchConfigurator = () => {
@@ -53,7 +64,7 @@ export function AIChatWidget() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({ messages: history, language }),
       })
 
       if (!response.ok) {
@@ -68,7 +79,9 @@ export function AIChatWidget() {
         ...prev,
         {
           role: 'assistant',
-          content: 'Извините, произошла техническая ошибка при подключении к серверу ИИ. Пожалуйста, попробуйте еще раз позже.',
+          content: language === 'es'
+            ? 'Lo sentimos, ocurrió un error técnico al conectar con el servidor de IA. Por favor, inténtelo de nuevo más tarde.'
+            : 'Sorry, a technical error occurred while connecting to the AI server. Please try again later.',
         },
       ])
     } finally {
@@ -102,17 +115,19 @@ export function AIChatWidget() {
             <div className="flex items-center gap-2">
               <Sliders size={12} className="text-white/60" />
               <span className="text-[10px] tracking-wider uppercase font-semibold text-white/80">
-                Конфигуратор LUM V5
+                {language === 'es' ? 'Configurador LUM V5' : 'LUM V5 Configurator'}
               </span>
             </div>
             <p className="text-[10px] text-stone-400 font-light leading-normal">
-              Выберите индивидуальный цвет кузова, пакет зарядки и отправьте запрос на аллокацию автомобиля.
+              {language === 'es'
+                ? 'Seleccione pintura personalizada, paquete de carga y envíe su solicitud de reserva.'
+                : 'Choose custom paint, charging package, and submit your reservation request.'}
             </p>
             <button
               onClick={handleLaunchConfigurator}
               className="w-full text-center py-2 bg-white text-stone-950 text-[10px] tracking-widest uppercase font-medium hover:bg-stone-100 transition-colors rounded-md cursor-pointer shadow-sm"
             >
-              Сконфигурировать авто
+              {language === 'es' ? 'Configurar vehículo' : 'Configure Vehicle'}
             </button>
           </motion.div>
         )}
@@ -152,7 +167,7 @@ export function AIChatWidget() {
                 transition={{ duration: 0.2 }}
                 className="flex items-center justify-center"
               >
-                <Sparkles size={20} className="text-white animate-pulse" strokeWidth={1.5} />
+                <MessageCircle size={20} className="text-white" strokeWidth={1.5} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -215,7 +230,9 @@ export function AIChatWidget() {
                 <div className="flex justify-start">
                   <div className="bg-stone-900/40 border border-stone-900/60 text-stone-400 px-4 py-3 rounded-xl rounded-bl-none flex items-center gap-2">
                     <Loader2 size={12} className="animate-spin text-stone-500" />
-                    <span className="text-[10px] tracking-wider uppercase font-light">Анализирую...</span>
+                    <span className="text-[10px] tracking-wider uppercase font-light">
+                      {language === 'es' ? 'Analizando...' : 'Analyzing...'}
+                    </span>
                   </div>
                 </div>
               )}
@@ -229,7 +246,11 @@ export function AIChatWidget() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Спросите о LUM V5 (мощность, запас хода)..."
+                placeholder={
+                  language === 'es'
+                    ? 'Pregunte sobre LUM V5 (potencia, autonomía)...'
+                    : 'Ask about LUM V5 (power, range)...'
+                }
                 disabled={isLoading}
                 className="flex-1 bg-stone-900/80 text-white text-xs border border-stone-850 px-3.5 py-3 rounded-lg focus:outline-none focus:border-stone-700 disabled:opacity-50"
               />

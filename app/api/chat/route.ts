@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   try {
-    const { messages } = await request.json()
+    const { messages, language } = await request.json()
 
     const apiKey = process.env.OPENROUTER_API_KEY
 
@@ -29,7 +29,7 @@ Vehicle Specifications (LUM V5):
 
 Behavior Guidelines:
 - Style: Professional, polite, sophisticated, premium (luxury automotive tone). Keep replies concise and structured.
-- Language: Respond in the language the user speaks (e.g. Russian, English).
+- Language: You MUST respond in ${language === 'es' ? 'Spanish' : 'English'}. All communication must be strictly in this language.
 - Goal: Answer questions about the LUM V5 and guide the user towards placing a quote request.
 - Triggering the Configurator: If the user expresses interest in ordering, configuring, buying, getting a quote, or booking a test drive/allocation, output "[TRIGGER_QUOTE_MODAL]" at the very end of your response. The chat interface will detect this and show a premium inline card to launch the configurator.`
 
