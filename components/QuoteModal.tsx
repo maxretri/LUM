@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight, ArrowLeft, Check, Sparkles, Zap, Shield, Car } from 'lucide-react'
 import Image from 'next/image'
 import { COLORS } from '@/lib/constants'
+import { useLanguage } from '@/lib/LanguageContext'
 
 // Color descriptions to add narrative premium depth
 const COLOR_DETAILS: Record<string, { description: string; character: string }> = {
@@ -91,6 +92,7 @@ function AnimatedPrice({ price }: { price: number }) {
 }
 
 export function QuoteModal() {
+  const { t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(1) // Steps 1 to 4
 
@@ -151,18 +153,18 @@ export function QuoteModal() {
     if (step === 3) {
       // Validate inputs
       const newErrors: { [key: string]: string } = {}
-      if (!formData.firstName.trim()) newErrors.firstName = 'First name is required'
-      if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required'
+      if (!formData.firstName.trim()) newErrors.firstName = t('First name is required')
+      if (!formData.lastName.trim()) newErrors.lastName = t('Last name is required')
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       if (!formData.email.trim()) {
-        newErrors.email = 'Email is required'
+        newErrors.email = t('Email is required')
       } else if (!emailRegex.test(formData.email)) {
-        newErrors.email = 'Invalid email address'
+        newErrors.email = t('Invalid email address')
       }
 
       if (!formData.phone.trim()) {
-        newErrors.phone = 'Phone number is required'
+        newErrors.phone = t('Phone number is required')
       }
 
       if (Object.keys(newErrors).length > 0) {
@@ -257,16 +259,16 @@ export function QuoteModal() {
                   <span className="text-[10px] tracking-[0.4em] uppercase font-light">LUM LEV 01</span>
                 </div>
                 <h3 className="text-3xl font-extralight tracking-tight mt-3 text-white">
-                  {step === 1 && 'Configure Design'}
-                  {step === 2 && 'Energy System'}
-                  {step === 3 && 'Final Quote'}
-                  {step === 4 && 'Allocation Ready'}
+                  {step === 1 && t('Configure Design')}
+                  {step === 2 && t('Energy System')}
+                  {step === 3 && t('Final Quote')}
+                  {step === 4 && t('Allocation Ready')}
                 </h3>
                 <p className="text-xs text-stone-400 font-light mt-1.5 leading-relaxed">
-                  {step === 1 && 'Select paint work and view your digital twin.'}
-                  {step === 2 && 'Optimize charging performance for your home.'}
-                  {step === 3 && 'Enter personal details for validation.'}
-                  {step === 4 && 'Your premium vehicle quote is complete.'}
+                  {step === 1 && t('Select paint work and view your digital twin.')}
+                  {step === 2 && t('Optimize charging performance for your home.')}
+                  {step === 3 && t('Enter personal details for validation.')}
+                  {step === 4 && t('Your premium vehicle quote is complete.')}
                 </p>
               </div>
 
@@ -328,18 +330,18 @@ export function QuoteModal() {
                 {step < 4 ? (
                   <div className="flex flex-col gap-2.5 text-stone-400 font-light text-xs tracking-wider">
                     <div className="flex justify-between">
-                      <span>LEV 01 Base Price:</span>
+                      <span>{t('LEV 01 Base Price:')}</span>
                       <span className="font-normal text-white">€{BASE_PRICE.toLocaleString()}</span>
                     </div>
                     
                     <div className="flex justify-between items-baseline">
-                      <span>Paint ({selectedColor.name}):</span>
+                      <span>{t('Paint')} ({t(selectedColor.name)}):</span>
                       <span className="font-normal text-white">€0</span>
                     </div>
 
                     {selectedEnergy.price > 0 && (
                       <div className="flex justify-between">
-                        <span>{selectedEnergy.name}:</span>
+                        <span>{t(selectedEnergy.name)}:</span>
                         <span className="font-normal text-white">+€{selectedEnergy.price.toLocaleString()}</span>
                       </div>
                     )}
@@ -347,7 +349,7 @@ export function QuoteModal() {
                     <div className="h-px bg-stone-800 my-2" />
                     
                     <div className="flex justify-between text-sm tracking-normal text-white font-medium">
-                      <span>Total Estimate:</span>
+                      <span>{t('Total Estimate:')}</span>
                       <span className="text-base text-white tracking-tight"><AnimatedPrice price={totalPrice} /></span>
                     </div>
                   </div>
@@ -355,10 +357,10 @@ export function QuoteModal() {
                   <div className="flex flex-col gap-2.5 text-stone-400 font-light text-xs">
                     <div className="flex items-center gap-1.5 text-emerald-400 font-medium">
                       <Shield size={12} />
-                      <span>Security allocation locked</span>
+                      <span>{t('Security allocation locked')}</span>
                     </div>
                     <p className="text-[10px] text-stone-500 font-light leading-relaxed">
-                      LUM Automotive © 2026. Custom specifications registered under reference #{Math.floor(100000 + Math.random() * 900000)}.
+                      {t('LUM Automotive © 2026. Custom specifications registered under reference')} #{Math.floor(100000 + Math.random() * 900000)}.
                     </p>
                   </div>
                 )}
@@ -402,9 +404,9 @@ export function QuoteModal() {
                   </div>
                   {step < 4 && (
                     <span className="text-xs text-stone-500 font-medium hidden sm:inline">
-                      {step === 1 && 'Exterior Paint Options'}
-                      {step === 2 && 'Smart Charging Infrastructure'}
-                      {step === 3 && 'Personal & Security Details'}
+                      {step === 1 && t('Exterior Paint Options')}
+                      {step === 2 && t('Smart Charging Infrastructure')}
+                      {step === 3 && t('Personal & Security Details')}
                     </span>
                   )}
                 </div>
@@ -432,9 +434,9 @@ export function QuoteModal() {
                       className="flex flex-col h-full justify-between gap-6"
                     >
                       <div>
-                        <h4 className="text-xl font-light text-stone-900 tracking-tight">Choose Paint Work</h4>
+                        <h4 className="text-xl font-light text-stone-900 tracking-tight">{t('Choose Paint Work')}</h4>
                         <p className="text-xs text-stone-400 font-light mt-1">
-                          Tailor the aesthetic personality of your LEV 01 with our curated premium options.
+                          {t('Tailor the aesthetic personality of your LEV 01 with our curated premium options.')}
                         </p>
                       </div>
 
@@ -455,14 +457,14 @@ export function QuoteModal() {
                       <div className="flex flex-col gap-4">
                         <div className="flex justify-between items-baseline border-b border-stone-100 pb-2">
                           <span className="text-xs tracking-[0.2em] uppercase text-stone-500 font-medium">
-                            {selectedColor.name}
+                            {t(selectedColor.name)}
                           </span>
                           <span className="text-[10px] text-stone-400 font-light">
-                            {colorMeta.character}
+                            {t(colorMeta.character)}
                           </span>
                         </div>
                         <p className="text-xs text-stone-500 font-light leading-relaxed min-h-[36px]">
-                          {colorMeta.description}
+                          {t(colorMeta.description)}
                         </p>
 
                         <div className="flex gap-4.5 justify-center py-2">
@@ -508,9 +510,9 @@ export function QuoteModal() {
                       className="flex flex-col gap-5"
                     >
                       <div>
-                        <h4 className="text-xl font-light text-stone-900 tracking-tight">Select Energy Ecosystem</h4>
+                        <h4 className="text-xl font-light text-stone-900 tracking-tight">{t('Select Energy Ecosystem')}</h4>
                         <p className="text-xs text-stone-400 font-light mt-1">
-                          Seamlessly integrate charging into your household. Our clean energy setups optimize costs automatically.
+                          {t('Seamlessly integrate charging into your household. Our clean energy setups optimize costs automatically.')}
                         </p>
                       </div>
 
@@ -540,17 +542,17 @@ export function QuoteModal() {
                               
                               <div className="flex-1 min-w-0">
                                 <div className="flex justify-between items-baseline">
-                                  <span className="text-sm font-semibold text-stone-900 tracking-tight">{pkg.name}</span>
+                                  <span className="text-sm font-semibold text-stone-900 tracking-tight">{t(pkg.name)}</span>
                                   <span className="text-xs font-semibold text-stone-950">
-                                    {pkg.price === 0 ? 'Included' : `+€${pkg.price.toLocaleString()}`}
+                                    {pkg.price === 0 ? t('Included') : `+€${pkg.price.toLocaleString()}`}
                                   </span>
                                 </div>
                                 <p className="text-[10px] text-stone-400 font-semibold uppercase tracking-wider mt-0.5 flex items-center gap-1">
                                   <Zap size={10} className="text-stone-400" />
-                                  {pkg.tagline}
+                                  {t(pkg.tagline)}
                                 </p>
                                 <p className="text-[11px] text-stone-500 font-light mt-1.5 leading-relaxed">
-                                  {pkg.description}
+                                  {t(pkg.description)}
                                 </p>
                                 
                                 {/* Bullet points inside details */}
@@ -558,7 +560,7 @@ export function QuoteModal() {
                                   {pkg.features.map((feat, idx) => (
                                     <span key={idx} className="inline-flex items-center text-[9px] text-stone-400 font-medium">
                                       <Check size={8} className="text-stone-900 mr-1" />
-                                      {feat}
+                                      {t(feat)}
                                     </span>
                                   ))}
                                 </div>
@@ -588,9 +590,9 @@ export function QuoteModal() {
                       className="flex flex-col gap-5"
                     >
                       <div>
-                        <h4 className="text-xl font-light text-stone-900 tracking-tight">Your Contact Information</h4>
+                        <h4 className="text-xl font-light text-stone-900 tracking-tight">{t('Your Contact Information')}</h4>
                         <p className="text-xs text-stone-400 font-light mt-1">
-                          Submit your specifications. A dedicated allocation specialist will call you to confirm build dates.
+                          {t('Submit your specifications. A dedicated allocation specialist will call you to confirm build dates.')}
                         </p>
                       </div>
 
@@ -605,12 +607,12 @@ export function QuoteModal() {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">Active spec</p>
+                          <p className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">{t('Active spec')}</p>
                           <p className="text-xs font-semibold text-stone-850 truncate mt-0.5">
-                            LUM LEV 01 in {selectedColor.name} {selectedEnergy.id !== 'none' ? `+ ${selectedEnergy.name}` : ''}
+                            {t('LUM LEV 01 in')} {t(selectedColor.name)} {selectedEnergy.id !== 'none' ? `+ ${t(selectedEnergy.name)}` : ''}
                           </p>
                           <p className="text-xs font-light text-stone-505 mt-0.5">
-                            Estimated Allocation Total: <span className="font-semibold text-stone-900"><AnimatedPrice price={totalPrice} /></span>
+                            {t('Estimated Allocation Total:')} <span className="font-semibold text-stone-900"><AnimatedPrice price={totalPrice} /></span>
                           </p>
                         </div>
                       </div>
@@ -618,7 +620,7 @@ export function QuoteModal() {
                       {/* Form Inputs Grid */}
                       <div className="grid grid-cols-2 gap-4">
                         <div className="col-span-2 sm:col-span-1 flex flex-col gap-1.5">
-                          <label htmlFor="firstName" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">First Name</label>
+                          <label htmlFor="firstName" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">{t('First Name')}</label>
                           <input
                             type="text"
                             id="firstName"
@@ -633,7 +635,7 @@ export function QuoteModal() {
                         </div>
 
                         <div className="col-span-2 sm:col-span-1 flex flex-col gap-1.5">
-                          <label htmlFor="lastName" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">Last Name</label>
+                          <label htmlFor="lastName" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">{t('Last Name')}</label>
                           <input
                             type="text"
                             id="lastName"
@@ -648,7 +650,7 @@ export function QuoteModal() {
                         </div>
 
                         <div className="col-span-2 flex flex-col gap-1.5">
-                          <label htmlFor="email" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">Email Address</label>
+                          <label htmlFor="email" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">{t('Email Address')}</label>
                           <input
                             type="email"
                             id="email"
@@ -663,7 +665,7 @@ export function QuoteModal() {
                         </div>
 
                         <div className="col-span-2 flex flex-col gap-1.5">
-                          <label htmlFor="phone" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">Phone Number</label>
+                          <label htmlFor="phone" className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">{t('Phone Number')}</label>
                           <input
                             type="tel"
                             id="phone"
@@ -686,7 +688,7 @@ export function QuoteModal() {
                             className="mt-0.5 accent-stone-950 border border-stone-200 rounded w-4 h-4"
                           />
                           <label htmlFor="newsletter" className="text-[11px] text-stone-400 leading-normal font-light">
-                            I consent to receive exclusive updates, technical reports, and special event invitations from LUM Automotive.
+                            {t('I consent to receive exclusive updates, technical reports, and special event invitations from LUM Automotive.')}
                           </label>
                         </div>
                       </div>
@@ -710,23 +712,23 @@ export function QuoteModal() {
                         <Sparkles size={26} className="text-stone-850" />
                       </div>
                       
-                      <h4 className="text-2xl font-light text-stone-900 tracking-tight">Configuration Submitted</h4>
+                      <h4 className="text-2xl font-light text-stone-900 tracking-tight">{t('Configuration Submitted')}</h4>
                       <p className="text-sm text-stone-500 font-light mt-3.5 max-w-sm leading-relaxed">
-                        Thank you, <span className="font-normal text-stone-850">{formData.firstName}</span>. We have recorded your interest in the **LUM LEV 01** in **{selectedColor.name}**
-                        {selectedEnergy.id !== 'none' ? ` with the **${selectedEnergy.name}**` : ''}.
+                        {t('Thank you')}, <span className="font-normal text-stone-850">{formData.firstName}</span>. {t('We have recorded your interest in the')} **LUM LEV 01** {t('in')} **{t(selectedColor.name)}**
+                        {selectedEnergy.id !== 'none' ? ` ${t('with the')} **${t(selectedEnergy.name)}**` : ''}.
                       </p>
                       
                       <div className="mt-6 p-4 bg-stone-50 rounded-xl border border-stone-200/50 max-w-sm text-left">
-                        <p className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">What happens next?</p>
+                        <p className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">{t('What happens next?')}</p>
                         <ul className="text-xs text-stone-500 font-light mt-2 space-y-1.5">
                           <li className="flex items-start gap-2">
-                            <span className="font-medium text-stone-900">1.</span> An automated allocation confirmation email has been dispatched to {formData.email}.
+                            <span className="font-medium text-stone-900">1.</span> {t('1. An automated allocation confirmation email has been dispatched to')} {formData.email}.
                           </li>
                           <li className="flex items-start gap-2">
-                            <span className="font-medium text-stone-900">2.</span> A local specialist will review build queue capacities.
+                            <span className="font-medium text-stone-900">2.</span> {t('2. A local specialist will review build queue capacities.')}
                           </li>
                           <li className="flex items-start gap-2">
-                            <span className="font-medium text-stone-900">3.</span> We will contact you at your phone number to coordinate allocation details.
+                            <span className="font-medium text-stone-900">3.</span> {t('3. We will contact you at your phone number to coordinate allocation details.')}
                           </li>
                         </ul>
                       </div>
@@ -736,7 +738,7 @@ export function QuoteModal() {
                         onClick={handleClose}
                         className="mt-8 px-8 py-3.5 bg-stone-900 text-white text-xs tracking-widest uppercase font-medium hover:bg-stone-800 transition-colors duration-300 rounded-lg shadow"
                       >
-                        Return to Site
+                        {t('Return to Site')}
                       </button>
                     </motion.div>
                   )}
@@ -753,15 +755,15 @@ export function QuoteModal() {
                         onClick={handleBack}
                         className="flex items-center gap-1.5 text-xs tracking-wider uppercase text-stone-400 hover:text-stone-900 transition-colors font-medium cursor-pointer"
                       >
-                        <ArrowLeft size={14} /> Back
+                        <ArrowLeft size={14} /> {t('Back')}
                       </button>
                     ) : (
-                      <span className="text-[10px] text-stone-300 uppercase tracking-widest font-semibold select-none">Start Configuration</span>
+                      <span className="text-[10px] text-stone-300 uppercase tracking-widest font-semibold select-none">{t('Start Configuration')}</span>
                     )}
 
                     {/* Show price on mobile next to back button */}
                     <div className="md:hidden text-[11px] text-stone-505 tracking-wide mt-0.5">
-                      Total: <span className="font-semibold text-stone-900"><AnimatedPrice price={totalPrice} /></span>
+                      {t('Total')}: <span className="font-semibold text-stone-900"><AnimatedPrice price={totalPrice} /></span>
                     </div>
                   </div>
 
@@ -773,11 +775,11 @@ export function QuoteModal() {
                       className="inline-flex items-center gap-2 bg-stone-900 text-white text-xs tracking-wider uppercase font-medium px-5 sm:px-6 py-3 sm:py-3.5 hover:bg-stone-850 disabled:opacity-50 transition-all duration-300 cursor-pointer rounded-lg shadow"
                     >
                       {isSubmitting ? (
-                        <>Processing...</>
+                        <>{t('Processing...')}</>
                       ) : step === 3 ? (
-                        <>Submit Quote <Check size={14} /></>
+                        <>{t('Submit Quote')} <Check size={14} /></>
                       ) : (
-                        <>Next Step <ArrowRight size={14} /></>
+                        <>{t('Next Step')} <ArrowRight size={14} /></>
                       )}
                     </button>
                   </div>

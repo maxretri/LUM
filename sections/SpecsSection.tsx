@@ -4,8 +4,10 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { SPECS } from '@/lib/constants'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function SpecsSection() {
+  const { t } = useLanguage()
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -22,13 +24,13 @@ export function SpecsSection() {
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="text-[10px] tracking-[0.25em] uppercase text-stone-400 mb-3">
-                {spec.label}
+                {t(spec.label)}
               </p>
               <p className="text-5xl font-extralight text-stone-900 leading-none tabular-nums">
                 <AnimatedNumber target={spec.value} />
               </p>
               {spec.unit && (
-                <p className="text-sm text-stone-400 font-light mt-2">{spec.unit}</p>
+                <p className="text-sm text-stone-400 font-light mt-2">{t(spec.unit)}</p>
               )}
             </motion.div>
           ))}

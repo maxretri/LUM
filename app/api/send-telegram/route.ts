@@ -54,6 +54,24 @@ export async function POST(request: Request) {
       }),
     })
 
+    // Forward to Webhook for Google Sheets / Excel automation if configured
+    const webhookUrl = process.env.WEBHOOK_URL || process.env.GOOGLE_SHEETS_WEBHOOK_URL
+    if (webhookUrl) {
+      try {
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            type,
+            data,
+          }),
+        }).catch((e) => console.error('Background Webhook post failed:', e))
+      } catch (err) {
+        console.error('Webhook forward failed:', err)
+      }
+    }
+
     if (!response.ok) {
       const errText = await response.text()
       console.error('Telegram API error:', errText)

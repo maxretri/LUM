@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { LANDING_GALLERY } from '@/lib/constants'
+import { useLanguage } from '@/lib/LanguageContext'
 
 const SPANS = [
   'lg:col-span-2 lg:row-span-2',
@@ -16,6 +17,7 @@ const SPANS = [
 ]
 
 export function GallerySection() {
+  const { t } = useLanguage()
   return (
     <section id="gallery" className="bg-white py-24 lg:py-28 scroll-mt-16">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8">
@@ -27,14 +29,14 @@ export function GallerySection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <div>
-            <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-2">Gallery</p>
-            <h2 className="text-3xl sm:text-4xl font-extralight text-stone-900">The LEV 01, in full.</h2>
+            <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-2">{t('Gallery')}</p>
+            <h2 className="text-3xl sm:text-4xl font-extralight text-stone-900">{t('The LEV 01, in full.')}</h2>
           </div>
           <Link
             href="/gallery"
             className="hidden sm:inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-stone-500 hover:text-stone-900 transition-colors duration-300"
           >
-            View all
+            {t('View all')}
             <ArrowRight size={16} />
           </Link>
         </motion.div>

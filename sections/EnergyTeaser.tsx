@@ -5,8 +5,10 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function EnergyTeaser() {
+  const { t } = useLanguage()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const scale = useTransform(scrollYProgress, [0, 1], [1.1, 1])
@@ -33,20 +35,19 @@ export function EnergyTeaser() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-emerald-200/70 text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-5">
-            Introducing · LUM Energy
+            {t('Introducing · LUM Energy')}
           </p>
           <h2 className="text-white font-extralight text-4xl sm:text-6xl md:text-7xl tracking-tight leading-[1.05] max-w-3xl mb-6">
-            We don&apos;t just build the car.<br />We power it.
+            {t("We don't just build the car.")}<br />{t("We power it.")}
           </h2>
           <p className="text-white/70 font-light text-base sm:text-lg max-w-xl mb-10">
-            Home, villa and commercial charging — solar, storage and energy that, in
-            effect, drives for free.
+            {t('Home, villa and commercial charging — solar, storage and energy that, in effect, drives for free.')}
           </p>
           <Link
             href="/energy"
             className="inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-stone-900 bg-white px-7 py-4 hover:bg-stone-100 transition-colors duration-300"
           >
-            Explore LUM Energy
+            {t('Explore LUM Energy')}
             <ArrowRight size={16} />
           </Link>
         </motion.div>

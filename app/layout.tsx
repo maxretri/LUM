@@ -5,6 +5,8 @@ import { CookieConsent } from '@/components/CookieConsent'
 import { QuoteModal } from '@/components/QuoteModal'
 import { AIChatWidget } from '@/components/AIChatWidget'
 
+import { LanguageProvider } from '@/lib/LanguageContext'
+
 const geist = Geist({
   variable: '--font-sans',
   subsets: ['latin'],
@@ -29,10 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={geist.variable}>
       <body className="antialiased bg-white text-stone-900 font-sans">
-        {children}
-        <CookieConsent />
-        <QuoteModal />
-        <AIChatWidget />
+        <LanguageProvider>
+          {children}
+          <CookieConsent />
+          <QuoteModal />
+          <AIChatWidget />
+        </LanguageProvider>
       </body>
     </html>
   )

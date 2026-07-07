@@ -3,8 +3,10 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function LifestyleSection() {
+  const { t } = useLanguage()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1])
@@ -32,10 +34,10 @@ export function LifestyleSection() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-white/60 text-[10px] sm:text-xs tracking-[0.4em] uppercase mb-3">
-            Designed for the journey
+            {t('Designed for the journey')}
           </p>
           <h2 className="text-white font-extralight text-4xl sm:text-6xl md:text-7xl tracking-tight leading-[1.05]">
-            Drive further.<br />Live better.
+            {t('Drive further.')}<br />{t('Live better.')}
           </h2>
         </motion.div>
       </div>

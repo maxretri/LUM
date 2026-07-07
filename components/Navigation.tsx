@@ -6,10 +6,12 @@ import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/Logo'
 import { NAV_ITEMS } from '@/lib/constants'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -61,22 +63,49 @@ export function Navigation() {
                 scrolled ? 'text-stone-700' : 'text-white/90'
               }`}
             >
-              {item.label}
+              {t(item.label)}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <a
-          href="#quote"
-          className={`hidden lg:block text-xs tracking-[0.15em] uppercase px-5 py-2.5 border transition-all duration-300 ${
-            scrolled
-              ? 'border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white'
-              : 'border-white/70 text-white hover:bg-white hover:text-stone-900'
-          }`}
-        >
-          Request Quote
-        </a>
+        {/* Desktop CTA + Language Switcher */}
+        <div className="hidden lg:flex items-center gap-8">
+          {/* Language Switcher */}
+          <div className="flex items-center gap-2.5 text-[10px] tracking-[0.2em] font-semibold">
+            <button
+              onClick={() => setLanguage('en')}
+              className={`transition-colors cursor-pointer ${
+                language === 'en'
+                  ? scrolled ? 'text-stone-900' : 'text-white'
+                  : scrolled ? 'text-stone-300 hover:text-stone-500' : 'text-white/40 hover:text-white/70'
+              }`}
+            >
+              EN
+            </button>
+            <span className={scrolled ? 'text-stone-200' : 'text-white/20'}>/</span>
+            <button
+              onClick={() => setLanguage('es')}
+              className={`transition-colors cursor-pointer ${
+                language === 'es'
+                  ? scrolled ? 'text-stone-900' : 'text-white'
+                  : scrolled ? 'text-stone-300 hover:text-stone-500' : 'text-white/40 hover:text-white/70'
+              }`}
+            >
+              ES
+            </button>
+          </div>
+
+          <a
+            href="#quote"
+            className={`text-xs tracking-[0.15em] uppercase px-5 py-2.5 border transition-all duration-300 ${
+              scrolled
+                ? 'border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white'
+                : 'border-white/70 text-white hover:bg-white hover:text-stone-900'
+            }`}
+          >
+            {t('Request Quote')}
+          </a>
+        </div>
 
         {/* Mobile menu toggle */}
         <button
@@ -109,15 +138,36 @@ export function Navigation() {
                   onClick={() => setOpen(false)}
                   className="py-3 text-sm tracking-[0.15em] uppercase text-stone-700 border-b border-stone-100 last:border-0"
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               ))}
+
+              {/* Mobile Language Switcher */}
+              <div className="flex items-center gap-3 py-4 border-b border-stone-100">
+                <span className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold">Language:</span>
+                <div className="flex items-center gap-2 text-xs tracking-widest font-semibold uppercase">
+                  <button
+                    onClick={() => { setLanguage('en'); setOpen(false); }}
+                    className={`transition-colors cursor-pointer ${language === 'en' ? 'text-stone-900' : 'text-stone-300'}`}
+                  >
+                    English
+                  </button>
+                  <span className="text-stone-200">/</span>
+                  <button
+                    onClick={() => { setLanguage('es'); setOpen(false); }}
+                    className={`transition-colors cursor-pointer ${language === 'es' ? 'text-stone-900' : 'text-stone-300'}`}
+                  >
+                    Español
+                  </button>
+                </div>
+              </div>
+
               <a
                 href="#quote"
                 onClick={() => setOpen(false)}
                 className="mt-6 text-center text-xs tracking-[0.15em] uppercase px-5 py-3.5 bg-stone-900 text-white"
               >
-                Request Quote
+                {t('Request Quote')}
               </a>
             </div>
           </motion.nav>

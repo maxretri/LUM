@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Logo } from '@/components/Logo'
 import { Instagram } from 'lucide-react'
+import { useLanguage } from '@/lib/LanguageContext'
 
 const FOOTER_LINKS: { label: string; href: string }[] = [
   { label: 'LEV 01', href: '/#overview' },
@@ -16,6 +17,7 @@ const FOOTER_LINKS: { label: string; href: string }[] = [
 ]
 
 export function FooterSection() {
+  const { t } = useLanguage()
   return (
     <footer className="bg-white border-t border-stone-100 py-10">
       <motion.div
@@ -36,7 +38,7 @@ export function FooterSection() {
               href={item.href}
               className="text-xs tracking-[0.15em] uppercase text-stone-400 hover:text-stone-700 transition-colors duration-300"
             >
-              {item.label}
+              {t(item.label)}
             </Link>
           ))}
         </nav>

@@ -4,8 +4,10 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import { TextReveal } from '@/components/TextReveal'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function HeroSection() {
+  const { t } = useLanguage()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
@@ -45,13 +47,13 @@ export function HeroSection() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
         >
           <p className="text-white/60 text-xs tracking-[0.4em] uppercase mb-4">
-            Introducing
+            {t('Introducing')}
           </p>
           <h1 className="text-white font-extralight text-6xl md:text-8xl tracking-tight leading-none mb-4">
             <TextReveal text="LEV 01" delay={0.2} />
           </h1>
           <p className="text-white/70 text-base font-light tracking-wide max-w-sm">
-            The electric vehicle reimagined.<br />Pure range. Pure refinement.
+            {t('The electric vehicle reimagined.')}<br />{t('Pure range. Pure refinement.')}
           </p>
         </motion.div>
 
@@ -65,13 +67,13 @@ export function HeroSection() {
             href="#specifications"
             className="text-xs tracking-[0.2em] uppercase text-white border border-white/50 px-6 py-3 hover:bg-white hover:text-stone-900 transition-all duration-300"
           >
-            Explore
+            {t('Explore')}
           </a>
           <a
             href="#quote"
             className="text-xs tracking-[0.2em] uppercase text-stone-900 bg-white px-6 py-3 hover:bg-stone-100 transition-all duration-300"
           >
-            Request Quote
+            {t('Request Quote')}
           </a>
         </motion.div>
       </motion.div>
@@ -84,7 +86,7 @@ export function HeroSection() {
         transition={{ delay: 1.5, duration: 1 }}
         style={{ opacity }}
       >
-        <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+        <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase">{t('Scroll')}</span>
         <div className="w-[1px] h-12 bg-white/15 relative overflow-hidden">
           <motion.div
             className="absolute top-0 left-0 right-0 bg-white/70 w-full"

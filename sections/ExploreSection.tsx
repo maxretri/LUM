@@ -5,10 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { EXPLORE_CARDS } from '@/lib/constants'
+import { useLanguage } from '@/lib/LanguageContext'
 
 const MotionLink = motion.create(Link)
 
 export function ExploreSection() {
+  const { t } = useLanguage()
   return (
     <section className="bg-white py-28" id="gallery">
       <div className="max-w-[1440px] mx-auto px-8">
@@ -19,8 +21,8 @@ export function ExploreSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-2">Discover</p>
-          <h2 className="text-4xl font-extralight text-stone-900">Explore LEV 01</h2>
+          <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-2">{t('Discover')}</p>
+          <h2 className="text-4xl font-extralight text-stone-900">{t('Explore LEV 01')}</h2>
         </motion.div>
 
         <motion.div
@@ -54,7 +56,7 @@ export function ExploreSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
-                <span className="text-white text-sm font-light tracking-wide">{card.title}</span>
+                <span className="text-white text-sm font-light tracking-wide">{t(card.title)}</span>
                 <ArrowRight
                   size={16}
                   className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"

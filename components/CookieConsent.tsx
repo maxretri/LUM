@@ -3,11 +3,13 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
+import { useLanguage } from '@/lib/LanguageContext'
 
 const STORAGE_KEY = 'lum-cookie-consent'
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     try {
@@ -39,13 +41,13 @@ export function CookieConsent() {
           className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 z-[60] sm:max-w-md bg-stone-900 text-white p-6 shadow-2xl"
         >
           <p className="text-sm font-light leading-relaxed text-white/80">
-            We use cookies to operate this site and understand how it is used. See our{' '}
+            {t('We use cookies to operate this site and understand how it is used. See our ')}
             <Link href="/cookies" className="underline underline-offset-2 hover:text-white">
-              Cookie Policy
+              {t('Cookie Policy')}
             </Link>{' '}
-            and{' '}
+            {t('and ')}
             <Link href="/privacy" className="underline underline-offset-2 hover:text-white">
-              Privacy Policy
+              {t('Privacy Policy')}
             </Link>
             .
           </p>
@@ -55,14 +57,14 @@ export function CookieConsent() {
               onClick={() => decide('accepted')}
               className="text-xs tracking-[0.15em] uppercase px-5 py-2.5 bg-white text-stone-900 hover:bg-stone-200 transition-colors duration-300"
             >
-              Accept
+              {t('Accept')}
             </button>
             <button
               type="button"
               onClick={() => decide('declined')}
               className="text-xs tracking-[0.15em] uppercase px-5 py-2.5 border border-white/40 text-white hover:bg-white/10 transition-colors duration-300"
             >
-              Decline
+              {t('Decline')}
             </button>
           </div>
         </motion.div>

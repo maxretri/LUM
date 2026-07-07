@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { COLORS, CAR_VIEWS } from '@/lib/constants'
 import type { ColorOption, CarView } from '@/types'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function ConfiguratorSection() {
+  const { t } = useLanguage()
   const [active, setActive] = useState<ColorOption>(COLORS[0])
   const [view, setView] = useState<CarView>('side')
 
@@ -23,8 +25,8 @@ export function ConfiguratorSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-2">Configure</p>
-          <h2 className="text-3xl sm:text-4xl font-extralight text-stone-900">Choose your colour</h2>
+          <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-2">{t('Configure')}</p>
+          <h2 className="text-3xl sm:text-4xl font-extralight text-stone-900">{t('Choose your colour')}</h2>
         </motion.div>
 
         {/* Vehicle — crossfades on both colour and angle change */}
@@ -78,7 +80,7 @@ export function ConfiguratorSection() {
                       transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                     />
                   )}
-                  <span className="relative z-10">{v.label}</span>
+                  <span className="relative z-10">{t(v.label)}</span>
                 </button>
               )
             })}
@@ -93,7 +95,7 @@ export function ConfiguratorSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-xs tracking-[0.25em] uppercase text-stone-500">{active.name}</p>
+          <p className="text-xs tracking-[0.25em] uppercase text-stone-500">{t(active.name)}</p>
 
           <div className="flex gap-4">
             {COLORS.map((color) => (
