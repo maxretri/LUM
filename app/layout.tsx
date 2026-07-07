@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import { CookieConsent } from '@/components/CookieConsent'
 import { QuoteModal } from '@/components/QuoteModal'
+import { AIChatWidget } from '@/components/AIChatWidget'
 
 const geist = Geist({
   variable: '--font-sans',
@@ -31,6 +32,7 @@ export default function RootLayout({
         {children}
         <CookieConsent />
         <QuoteModal />
+        <AIChatWidget />
       </body>
     </html>
   )
