@@ -44,7 +44,7 @@ Behavior Guidelines:
         'X-Title': 'LUM Website AI Assistant',
       },
       body: JSON.stringify({
-        model: 'qwen/qwen3.6-plus-preview', // User specifically requested Qwen 3.6
+        model: 'qwen/qwen3.6-plus', // Active Qwen 3.6 Plus model on OpenRouter
         messages: [
           { role: 'system', content: systemPrompt },
           ...messages,
