@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
+import { TextReveal } from '@/components/TextReveal'
 
 export function HeroSection() {
   const ref = useRef<HTMLElement>(null)
@@ -12,16 +13,23 @@ export function HeroSection() {
 
   return (
     <section ref={ref} id="overview" className="relative h-[70vh] min-h-[480px] overflow-hidden">
-      {/* Parallax image */}
-      <motion.div className="absolute inset-0 scale-110" style={{ y }}>
-        <Image
-          src="/images/home/hero.jpg"
-          alt="LUM LEV 01 — Taupe"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+      {/* Parallax image with load-in scale animation */}
+      <motion.div className="absolute inset-0 overflow-hidden" style={{ y }}>
+        <motion.div
+          className="relative w-full h-full"
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1.05 }}
+          transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Image
+            src="/images/home/hero.jpg"
+            alt="LUM LEV 01 — Taupe"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </motion.div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
       </motion.div>
@@ -32,15 +40,15 @@ export function HeroSection() {
         style={{ opacity }}
       >
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
         >
           <p className="text-white/60 text-xs tracking-[0.4em] uppercase mb-4">
             Introducing
           </p>
           <h1 className="text-white font-extralight text-6xl md:text-8xl tracking-tight leading-none mb-4">
-            LEV 01
+            <TextReveal text="LEV 01" delay={0.2} />
           </h1>
           <p className="text-white/70 text-base font-light tracking-wide max-w-sm">
             The electric vehicle reimagined.<br />Pure range. Pure refinement.
@@ -50,7 +58,7 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.7 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
           className="mt-6 flex gap-4"
         >
           <a
@@ -68,7 +76,7 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator with draw line loop */}
       <motion.div
         className="hidden md:flex absolute bottom-6 right-8 flex-col items-center gap-2"
         initial={{ opacity: 0 }}
@@ -77,12 +85,20 @@ export function HeroSection() {
         style={{ opacity }}
       >
         <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-        <motion.div
-          className="w-px h-12 bg-white/30"
-          animate={{ scaleY: [1, 0.3, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ transformOrigin: 'top' }}
-        />
+        <div className="w-[1px] h-12 bg-white/15 relative overflow-hidden">
+          <motion.div
+            className="absolute top-0 left-0 right-0 bg-white/70 w-full"
+            animate={{
+              y: [-16, 48],
+              height: [16, 16],
+            }}
+            transition={{
+              duration: 2.2,
+              repeat: Infinity,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          />
+        </div>
       </motion.div>
     </section>
   )

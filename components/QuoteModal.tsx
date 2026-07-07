@@ -59,6 +59,37 @@ const ENERGY_PACKAGES = [
 
 const BASE_PRICE = 59900
 
+function AnimatedPrice({ price }: { price: number }) {
+  const [displayPrice, setDisplayPrice] = useState(price)
+
+  useEffect(() => {
+    const start = displayPrice
+    const end = price
+    if (start === end) return
+
+    const duration = 650
+    const startTime = performance.now()
+    let frameId: number
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3) // easeOutCubic
+      const current = Math.round(start + (end - start) * eased)
+      setDisplayPrice(current)
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick)
+      }
+    }
+
+    frameId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frameId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [price])
+
+  return <span>€{displayPrice.toLocaleString()}</span>
+}
+
 export function QuoteModal() {
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(1) // Steps 1 to 4
@@ -317,7 +348,7 @@ export function QuoteModal() {
                     
                     <div className="flex justify-between text-sm tracking-normal text-white font-medium">
                       <span>Total Estimate:</span>
-                      <span className="text-base text-white tracking-tight">€{totalPrice.toLocaleString()}</span>
+                      <span className="text-base text-white tracking-tight"><AnimatedPrice price={totalPrice} /></span>
                     </div>
                   </div>
                 ) : (
@@ -579,7 +610,7 @@ export function QuoteModal() {
                             LUM LEV 01 in {selectedColor.name} {selectedEnergy.id !== 'none' ? `+ ${selectedEnergy.name}` : ''}
                           </p>
                           <p className="text-xs font-light text-stone-505 mt-0.5">
-                            Estimated Allocation Total: <span className="font-semibold text-stone-900">€{totalPrice.toLocaleString()}</span>
+                            Estimated Allocation Total: <span className="font-semibold text-stone-900"><AnimatedPrice price={totalPrice} /></span>
                           </p>
                         </div>
                       </div>
@@ -729,8 +760,8 @@ export function QuoteModal() {
                     )}
 
                     {/* Show price on mobile next to back button */}
-                    <div className="md:hidden text-[11px] text-stone-500 tracking-wide mt-0.5">
-                      Total: <span className="font-semibold text-stone-900">€{totalPrice.toLocaleString()}</span>
+                    <div className="md:hidden text-[11px] text-stone-505 tracking-wide mt-0.5">
+                      Total: <span className="font-semibold text-stone-900"><AnimatedPrice price={totalPrice} /></span>
                     </div>
                   </div>
 
