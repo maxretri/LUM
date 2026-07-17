@@ -4,6 +4,7 @@ import './globals.css'
 import { CookieConsent } from '@/components/CookieConsent'
 import { QuoteModal } from '@/components/QuoteModal'
 import { AIChatWidget } from '@/components/AIChatWidget'
+import { LenisProvider } from '@/components/LenisProvider'
 
 import { LanguageProvider } from '@/lib/LanguageContext'
 
@@ -32,7 +33,9 @@ export default function RootLayout({
     <html lang="en" className={geist.variable}>
       <body className="antialiased bg-white text-stone-900 font-sans">
         <LanguageProvider>
-          {children}
+          <LenisProvider>
+            {children}
+          </LenisProvider>
           <CookieConsent />
           <QuoteModal />
           <AIChatWidget />
